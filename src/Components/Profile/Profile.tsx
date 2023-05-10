@@ -3,11 +3,23 @@ import s from './Profile.module.css'
 import {MyPost} from "./MyPosts/MyPost";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
-export const Profile = () => {
+
+type typeMyPostsProps = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+type ProfileMainType = {
+    myPostsFromApp:Array<typeMyPostsProps>
+
+}
+
+export const Profile: React.FC<ProfileMainType> = ({myPostsFromApp}) => {
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPost/>
+            <MyPost  myPostsFromProfile={myPostsFromApp}/>
         </div>
     )
 }
