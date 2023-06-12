@@ -1,6 +1,23 @@
 import {typeMyPostsProps} from "../App";
+import {dialogReducer} from "./dialog-reducer";
+import {profileReducer} from "./profile-reducer";
 
-type dialogsData = {
+
+
+//////////
+export type dialogType = {
+    dialog: {
+        dialogsData: Array<dialogsData>
+        messagesData: Array<messagesDataType>
+        newMessageBody: string
+    }
+    post: {
+        postData: Array<postDataType>
+        newPostText: string
+    }
+}
+/////////////////
+export type dialogsData = {
     id: number;
     name: string;
 };
@@ -33,21 +50,24 @@ export type typeStore = {
     subscribe: (observer: (state: StateType) => void) => void;
     dispatch: (action: actionType) => void
 };
-type AddPostActionType = {
+
+
+export type AddPostActionType = {
     type: "ADD-POST"
     newPostText: string
-}
-type UpdateActionType = {
+ }
+export type UpdateActionType = {
     type: "UPDATE-POST"
     newText: string
 }
-type  UpdateNewMessageBodyType = {
+export type  UpdateNewMessageBodyType = {
     type: "UPDATE-NEW-MESSAGE-BODY"
     body: string
 }
-type SendMessageType = {
+export type SendMessageType = {
     type: "SEND-MESSAGE"
 }
+
 
 
 export type actionType = AddPostActionType | UpdateActionType | UpdateNewMessageBodyType | SendMessageType
@@ -76,7 +96,6 @@ export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyT
         body: body
     };
 }
-
 
 export let store: typeStore = {
     _state: {
@@ -108,34 +127,17 @@ export let store: typeStore = {
     getState() {
         return this._state
     },
+
     _callSubscriber() {
         console.log("s");
     },
 
-    subscribe(observer) {
-        this._callSubscriber = observer;
-    },
-    dispatch(action) {
+    subscribe(observer) {  this._callSubscriber = observer},
 
-        if (action.type === "ADD-POST") {
-            let newPost: typeMyPostsProps = {
-                id: new Date().getDate(),
-                message: action.newPostText,
-                likesCount: 10,
-            };
-            this._state.post.postData.push(newPost);
-            this._callSubscriber(this._state);
-        } else if (action.type === "UPDATE-POST") {
-            this._state.post.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
-            this._state.dialog.newMessageBody = action.body
-            this._callSubscriber(this._state);
-        } else if (action.type === 'SEND-MESSAGE') {
-            let body = this._state.dialog.newMessageBody;
-            this._state.dialog.newMessageBody = '';
-            this._state.dialog.messagesData.push({id: 6, message: body})
-            this._callSubscriber(this._state);
-        }
+    dispatch(action) {
+        dialogReducer(this._state, action);
+        profileReducer(this._state, action);
+        this._callSubscriber(this._state);
+
     }
 };
