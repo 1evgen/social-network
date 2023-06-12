@@ -11,8 +11,8 @@
     color: gold;
 }
 
-.messages {
-
+.messages .active {
+    color: gold;
 }
 
 .messages .message {
