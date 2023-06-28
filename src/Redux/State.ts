@@ -2,9 +2,7 @@ import {typeMyPostsProps} from "../App";
 import {dialogReducer} from "./dialog-reducer";
 import {profileReducer} from "./profile-reducer";
 
-
-
-//////////
+///////////////////////////////////////////////////////////
 export type dialogType = {
     dialog: {
         dialogsData: Array<dialogsData>
@@ -16,7 +14,6 @@ export type dialogType = {
         newPostText: string
     }
 }
-/////////////////
 export type dialogsData = {
     id: number;
     name: string;
@@ -30,7 +27,6 @@ type postDataType = {
     message: string;
     likesCount: number;
 };
-
 export type StateType = {
     dialog: {
         dialogsData: Array<dialogsData>;
@@ -42,7 +38,6 @@ export type StateType = {
         newPostText: string;
     };
 }
-
 export type typeStore = {
     _state: StateType;
     getState: () => typeof store._state
@@ -50,8 +45,6 @@ export type typeStore = {
     subscribe: (observer: (state: StateType) => void) => void;
     dispatch: (action: actionType) => void
 };
-
-
 export type AddPostActionType = {
     type: "ADD-POST"
     newPostText: string
@@ -67,10 +60,10 @@ export type  UpdateNewMessageBodyType = {
 export type SendMessageType = {
     type: "SEND-MESSAGE"
 }
-
-
-
+/////////////////////////////////////////////////////////////
 export type actionType = AddPostActionType | UpdateActionType | UpdateNewMessageBodyType | SendMessageType
+
+
 
 export const addPostActionCreator = (newPostText: string): AddPostActionType => {
     return {
@@ -132,12 +125,11 @@ export let store: typeStore = {
         console.log("s");
     },
 
-    subscribe(observer) {  this._callSubscriber = observer},
+    subscribe(observer) {this._callSubscriber = observer},
 
     dispatch(action) {
         dialogReducer(this._state, action);
         profileReducer(this._state, action);
         this._callSubscriber(this._state);
-
     }
 };

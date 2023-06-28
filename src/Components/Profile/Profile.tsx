@@ -23,7 +23,7 @@ export const Profile: React.FC<ProfileMainType> = ({myPostsFromApp,
                                                    // addPostCallback,
                                                        store,
                                                        // upDateNewPostText,
-                                                    dispatch
+                                                       dispatch
                                                    }
 
 ) => {
