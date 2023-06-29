@@ -3,6 +3,7 @@ import s from './Profile.module.css'
 import {MyPost} from "./MyPosts/MyPost";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {actionType, typeStore} from "../../Redux/Store";
+import {MyPostContainer} from "./MyPosts/MyPostContainer";
 
 
  export type typeMyPostsProps = {
@@ -30,12 +31,13 @@ export const Profile: React.FC<ProfileMainType> = ({myPostsFromApp,
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPost  myPostsFromProfile={myPostsFromApp}
-                     // addPostCallback={addPostCallback}
-                     store={store}
-                     // upDateNewPostText={upDateNewPostText}
-                     dispatch={dispatch}
-            />
+            <MyPostContainer myPostsFromProfile={myPostsFromApp} store={store} dispatch={dispatch}/>
+            {/*<MyPost  myPostsFromProfile={myPostsFromApp}*/}
+            {/*         // addPostCallback={addPostCallback}*/}
+            {/*         store={store}*/}
+            {/*         // upDateNewPostText={upDateNewPostText}*/}
+            {/*         dispatch={dispatch}*/}
+            {/*/>*/}
         </div>
     )
 }

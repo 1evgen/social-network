@@ -2,14 +2,6 @@ import {typeMyPostsProps} from "../App";
 import {dialogReducer} from "./dialog-reducer";
 import {profileReducer} from "./profile-reducer";
 
-export type dialogTypeWithoutPost = {
-    dialog: {
-        dialogsData: Array<dialogsData>
-        messagesData: Array<messagesDataType>
-        newMessageBody: string
-    }
-}
-
 
 export type dialogType = {
     dialog: {

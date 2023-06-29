@@ -1,6 +1,4 @@
-import React, {LegacyRef} from "react";
-import s from './MyPost.module.css'
-import {Post} from "./Post/Post";
+import React from "react";
 import {actionType, addPostActionCreator, changePostAC, store, typeStore} from "../../../Redux/Store";
 import {MyPost} from "./MyPost";
 
@@ -10,49 +8,32 @@ type typeMyPostsProps = {
     id: number
     message: string
     likesCount: number
-
 }
 
 type MyPostMainType = {
     myPostsFromProfile: Array<typeMyPostsProps>
-    // addPostCallback: (message: string) => void
     store: typeStore
-    // upDateNewPostText: (newText: string)=> void
     dispatch:(action:actionType)=> void
 }
 
-// addPostCallback(text)
-export const MyPostContainer: React.FC<MyPostMainType> = (props) => {
-    const {store, myPostsFromProfile, dispatch } = props
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
+
+export const MyPostContainer = (props: MyPostMainType) => {
 
     const addPost = () => {
-        let text = newPostElement.current?.value
-        text && dispatch(addPostActionCreator(store.getState().post.newPostText))
+         props.dispatch(addPostActionCreator(store.getState().post.newPostText))
     }
-
     // upDateNewPostText(newPostElement.current.value)
-    const onChangeHandler = () => {
-         let el = newPostElement.current?.value
+    const onChangeHandler = (el: string) => {
         if (el || el === '') {
-            dispatch(changePostAC(el))
+            props.dispatch(changePostAC(el))
         }
     }
 
-
-    let posts = myPostsFromProfile.map((el) => <Post key={el.id} messagePost={el.message} counterLike={el.likesCount}/>)
-
     return (
          <div>
-        {/*//     <div>*/}
-        {/*//         My posts*/}
-        {/*//         <div>*/}
-        {/*//             <textarea ref={newPostElement}  onChange={onChangeHandler} value={store._state.post.newPostText} />*/}
-        {/*//             <button onClick={addPost}>Add post</button>*/}
-        {/*//         </div>*/}
-        {/*//     </div>*/}
-        {/*//     {posts}*/}
-
+                 <MyPost myPostsFromProfile={props.myPostsFromProfile}
+                         upDateNewPostText={onChangeHandler}
+                         addPost={addPost}/>
         </div>
     )
 }
