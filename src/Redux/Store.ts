@@ -115,7 +115,7 @@ export let store: typeStore = {
                 {id: 1, message: "Hi how are you", likesCount: 15},
                 {id: 2, message: "Hi, i'm fine thanks", likesCount: 5},
             ],
-            newPostText: "it-kamasutra.com"
+            newPostText: "enter a post"
         },
     },
     getState() {

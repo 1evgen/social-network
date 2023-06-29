@@ -7,6 +7,7 @@ import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {actionType, typeStore,} from "./Redux/Store";
+import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 
 type dialogsTypeProps = {
     id: number
@@ -27,9 +28,7 @@ type typeMainForComponent = {
     dialogs: Array<dialogsTypeProps>
     messages: Array<messageTypeProps>
     myPosts: Array<typeMyPostsProps>
-    // addPostCallback: (message: string)=> void
     store: typeStore
-    // upDateNewPostText:(newText: string)=> void
     dispatch: (action: actionType)=> void
 
 }
@@ -39,9 +38,7 @@ const App: React.FC<typeMainForComponent> = ({
                                                  dialogs,
                                                  messages,
                                                  myPosts,
-                                                 // addPostCallback,
                                                  store,
-                                                 // upDateNewPostText,
                                                  dispatch,
 
                                              }) => {
@@ -52,17 +49,11 @@ const App: React.FC<typeMainForComponent> = ({
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path='/dialogs' render={() =>
-                        <Dialogs dialogs={dialogs}
-                                 messages={messages}
-                                 store={store}
-
-
-                        /> }>
+                        <DialogsContainer dialogs={dialogs} messages={messages} store={store} />
+                    }>
                     </Route>
                     <Route path='/profile' render={() => <Profile  myPostsFromApp={myPosts}
-                                                                   // addPostCallback={addPostCallback}
                                                                    store={store}
-                                                                   // upDateNewPostText={upDateNewPostText}
                                                                    dispatch={dispatch}
                     />}  ></Route>
                 </div>

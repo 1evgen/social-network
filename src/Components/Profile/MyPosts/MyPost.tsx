@@ -13,6 +13,7 @@ type MyPostMainType = {
     upDateNewPostText: (el: string) => void
     addPost: ()=> void
     myPostsFromProfile: Array<typeMyPostsProps>
+    value: string
 }
 
 // addPostCallback(text)
@@ -21,10 +22,10 @@ export const MyPost = (props: MyPostMainType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const addPost = () => {
-        // let text = newPostElement.current?.value
-        // text && dispatch(addPostActionCreator(store.getState().post.newPostText))
-    }
+    // const addPost = () => {
+    //     // let text = newPostElement.current?.value
+    //     // text && dispatch(addPostActionCreator(store.getState().post.newPostText))
+    // }
 
     const onInputChange = () => {
         const newText = newPostElement.current?.value || "";
@@ -40,7 +41,7 @@ export const MyPost = (props: MyPostMainType) => {
             <div>
                 My posts
                 <div>
-                    <textarea ref={newPostElement} onChange={onInputChange}   />
+                    <textarea ref={newPostElement} onChange={onInputChange} value={props.value}  />
                     <button onClick={props.addPost}>Add post</button>
                 </div>
             </div>
@@ -49,4 +50,3 @@ export const MyPost = (props: MyPostMainType) => {
     )
 }
 
-// value={store._state.post.newPostText}

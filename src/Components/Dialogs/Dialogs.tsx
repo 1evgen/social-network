@@ -1,9 +1,8 @@
 import s from './Dialog.module.css'
-import {NavLink} from "react-router-dom";
 import {Message} from "./Message/Message";
 import {DialogsItem} from "./Dialogitem/Dialogitem";
 import React, {ChangeEvent} from "react";
-import {actionType, sendMessageCreator, typeStore, updateNewMessageBodyCreator} from "../../Redux/Store";
+
 
 type dialogsTypeProps = {
     id: number
@@ -16,17 +15,19 @@ type messageTypeProps = {
 }
 
 type typeForDialogs = {
-    dialogs: Array<dialogsTypeProps>
-    messages: Array<messageTypeProps>
-    store: typeStore
-
-
+     dialogs: Array<dialogsTypeProps>
+     messages: Array<messageTypeProps>
+     sendMessageCreator: () => void
+     onNewMessageChange: (body: string)=> void
+     newMessageBody: string
 }
 
-export const Dialogs: React.FC<typeForDialogs> = ({     dialogs,
+ export const Dialogs: React.FC<typeForDialogs> = ({
+                                                        dialogs,
                                                         messages,
-                                                        store,
-
+                                                        sendMessageCreator,
+                                                        newMessageBody,
+                                                        onNewMessageChange
 
 
 }) => {
@@ -34,15 +35,13 @@ export const Dialogs: React.FC<typeForDialogs> = ({     dialogs,
     let dialog = dialogs.map((d) => <DialogsItem id={d.id} name={d.name}/>)
     let message = messages.map((m) => <Message message={m.message}/>)
 
-    let newMessageBody = store.getState().dialog.newMessageBody
-
     const onClickHandler = () => {
-        store.dispatch(sendMessageCreator())
+        sendMessageCreator()
     }
 
-   const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>)=> {
+   const onInputChange = (e: ChangeEvent<HTMLTextAreaElement>)=> {
         let body = e.currentTarget.value
-       store.dispatch(updateNewMessageBodyCreator(body))
+        onNewMessageChange(body)
    }
     return (
         <div className={s.dialogs}>
@@ -53,7 +52,7 @@ export const Dialogs: React.FC<typeForDialogs> = ({     dialogs,
             <div> {message}</div>
                 <div> <textarea value={newMessageBody}
                                 placeholder={'Enter your message'}
-                                onChange={onNewMessageChange}
+                                onChange={onInputChange}
                 /></div>
                 <div><button onClick={onClickHandler}> Send Message</button></div>
 

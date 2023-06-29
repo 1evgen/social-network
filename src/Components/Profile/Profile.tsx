@@ -14,16 +14,12 @@ import {MyPostContainer} from "./MyPosts/MyPostContainer";
 
 type ProfileMainType = {
     myPostsFromApp:Array<typeMyPostsProps>
-    // addPostCallback: (message: string)=> void
     store: typeStore
-    // upDateNewPostText: (newText: string)=> void
     dispatch:(action:actionType)=> void
 }
 
 export const Profile: React.FC<ProfileMainType> = ({myPostsFromApp,
-                                                   // addPostCallback,
                                                        store,
-                                                       // upDateNewPostText,
                                                        dispatch
                                                    }
 
@@ -31,13 +27,9 @@ export const Profile: React.FC<ProfileMainType> = ({myPostsFromApp,
     return (
         <div className={s.content}>
             <ProfileInfo/>
-            <MyPostContainer myPostsFromProfile={myPostsFromApp} store={store} dispatch={dispatch}/>
-            {/*<MyPost  myPostsFromProfile={myPostsFromApp}*/}
-            {/*         // addPostCallback={addPostCallback}*/}
-            {/*         store={store}*/}
-            {/*         // upDateNewPostText={upDateNewPostText}*/}
-            {/*         dispatch={dispatch}*/}
-            {/*/>*/}
+            <MyPostContainer myPostsFromProfile={myPostsFromApp}
+                             store={store}
+                             dispatch={dispatch}/>
         </div>
     )
 }

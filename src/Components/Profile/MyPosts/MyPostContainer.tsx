@@ -22,18 +22,21 @@ export const MyPostContainer = (props: MyPostMainType) => {
     const addPost = () => {
          props.dispatch(addPostActionCreator(store.getState().post.newPostText))
     }
-    // upDateNewPostText(newPostElement.current.value)
+
     const onChangeHandler = (el: string) => {
         if (el || el === '') {
             props.dispatch(changePostAC(el))
         }
     }
 
+    let value = props.store._state.post.newPostText
     return (
          <div>
                  <MyPost myPostsFromProfile={props.myPostsFromProfile}
                          upDateNewPostText={onChangeHandler}
-                         addPost={addPost}/>
+                         addPost={addPost}
+                         value = {value}
+                 />
         </div>
     )
 }

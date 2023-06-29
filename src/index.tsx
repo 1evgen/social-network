@@ -11,9 +11,7 @@ export let RerenderEntireTree = (state: StateType) => {
         <App dialogs={state.dialog.dialogsData}
              messages={state.dialog.messagesData}
              myPosts={state.post.postData}
-             // addPostCallback={store.addPostCallback.bind(store)}
              store={store}
-             // upDateNewPostText = {store.upDateNewPostText.bind(store)}
              dispatch={store.dispatch.bind(store)}
         />,
         document.getElementById('root')
