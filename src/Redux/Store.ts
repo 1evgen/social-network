@@ -3,48 +3,49 @@ import {dialogReducer} from "./dialog-reducer";
 import {profileReducer} from "./profile-reducer";
 
 
-export type dialogType = {
-    dialog: {
-        dialogsData: Array<dialogsData>
-        messagesData: Array<messagesDataType>
-        newMessageBody: string
-    }
-    post: {
-        postData: Array<postDataType>
-        newPostText: string
-    }
-}
-export type dialogsData = {
-    id: number;
-    name: string;
-};
-type messagesDataType = {
-    id: number;
-    message: string;
-};
-type postDataType = {
-    id: number;
-    message: string;
-    likesCount: number;
-};
-export type StateType = {
-    dialog: {
-        dialogsData: Array<dialogsData>;
-        messagesData: Array<messagesDataType>;
-        newMessageBody: string
-    };
-    post: {
-        postData: Array<postDataType>;
-        newPostText: string;
-    };
-}
-export type typeStore = {
-    _state: StateType;
-    getState: () => typeof store._state
-    _callSubscriber: (state: StateType) => void;
-    subscribe: (observer: (state: StateType) => void) => void;
-    dispatch: (action: actionType) => void
-};
+// export type dialogType = {
+//     dialog: {
+//         dialogsData: Array<dialogsData>
+//         messagesData: Array<messagesDataType>
+//         newMessageBody: string
+//     }
+//     post: {
+//         postData: Array<postDataType>
+//         newPostText: string
+//     }
+// }
+// export type dialogsData = {
+//     id: number;
+//     name: string;
+// };
+// type messagesDataType = {
+//     id: number;
+//     message: string;
+// };
+// type postDataType = {
+//     id: number;
+//     message: string;
+//     likesCount: number;
+// };
+// export type StateType = {
+//     // dialog: {
+//     //     dialogsData: Array<dialogsData>;
+//     //     messagesData: Array<messagesDataType>;
+//     //     newMessageBody: string
+//     // };
+//     post: {
+//         postData: Array<postDataType>;
+//         newPostText: string;
+//     };
+// }
+
+// export type typeStore = {
+//     _state: StateType;
+//     getState: () => typeof store._state
+//     _callSubscriber: (state: StateType) => void;
+//     subscribe: (observer: (state: StateType) => void) => void;
+//     dispatch: (action: actionType) => void
+// };
 export type AddPostActionType = {
     type: "ADD-POST"
     newPostText: string
@@ -91,46 +92,46 @@ export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyT
     };
 }
 
-export let store: typeStore = {
-    _state: {
-        dialog: {
-            dialogsData: [
-                {id: 1, name: "Ward"},
-                {id: 2, name: "Maddison"},
-                {id: 3, name: "Tielemans"},
-                {id: 4, name: "Ndidi"},
-                {id: 5, name: "Daka"},
-            ],
-            messagesData: [
-                {id: 1, message: "Hi"},
-                {id: 2, message: "Hello"},
-                {id: 3, message: "How are you"},
-                {id: 4, message: "fine"},
-                {id: 5, message: "Yo"},
-            ],
-            newMessageBody: " "
-        },
-        post: {
-            postData: [
-                {id: 1, message: "Hi how are you", likesCount: 15},
-                {id: 2, message: "Hi, i'm fine thanks", likesCount: 5},
-            ],
-            newPostText: "enter a post"
-        },
-    },
-    getState() {
-        return this._state
-    },
-
-    _callSubscriber() {
-        console.log("s");
-    },
-
-    subscribe(observer) {this._callSubscriber = observer},
-
-    dispatch(action) {
-        dialogReducer(this._state, action);
-        profileReducer(this._state, action);
-        this._callSubscriber(this._state);
-    }
-};
+// export let store: typeStore = {
+//     _state: {
+//         dialog: {
+//             dialogsData: [
+//                 {id: 1, name: "Ward"},
+//                 {id: 2, name: "Maddison"},
+//                 {id: 3, name: "Tielemans"},
+//                 {id: 4, name: "Ndidi"},
+//                 {id: 5, name: "Daka"},
+//             ],
+//             messagesData: [
+//                 {id: 1, message: "Hi"},
+//                 {id: 2, message: "Hello"},
+//                 {id: 3, message: "How are you"},
+//                 {id: 4, message: "fine"},
+//                 {id: 5, message: "Yo"},
+//             ],
+//             newMessageBody: " "
+//         },
+//         post: {
+//             postData: [
+//                 {id: 1, message: "Hi how are you", likesCount: 15},
+//                 {id: 2, message: "Hi, i'm fine thanks", likesCount: 5},
+//             ],
+//             newPostText: "enter a post"
+//         },
+//     },
+//     getState() {
+//         return this._state
+//     },
+//
+//     _callSubscriber() {
+//         console.log("s");
+//     },
+//
+//     subscribe(observer) {this._callSubscriber = observer},
+//
+//     dispatch(action) {
+//         dialogReducer(this._state, action);
+//         profileReducer(this._state, action);
+//         this._callSubscriber(this._state);
+//     }
+// };

@@ -2,6 +2,7 @@ import s from './Dialog.module.css'
 import {Message} from "./Message/Message";
 import {DialogsItem} from "./Dialogitem/Dialogitem";
 import React, {ChangeEvent} from "react";
+import {DialogsPageType} from "../../Redux/dialog-reducer";
 
 
 type dialogsTypeProps = {
@@ -15,28 +16,27 @@ type messageTypeProps = {
 }
 
 type typeForDialogs = {
-     dialogs: Array<dialogsTypeProps>
-     messages: Array<messageTypeProps>
-     sendMessageCreator: () => void
+     dialogsPage: DialogsPageType
+     // dialogs: Array<dialogsTypeProps>
+     // messages: Array<messageTypeProps>
+     sendMessage: () => void
      onNewMessageChange: (body: string)=> void
-     newMessageBody: string
+     // newMessageBody: string
 }
 
  export const Dialogs: React.FC<typeForDialogs> = ({
-                                                        dialogs,
-                                                        messages,
-                                                        sendMessageCreator,
-                                                        newMessageBody,
+                                                        dialogsPage,
+                                                        sendMessage,
                                                         onNewMessageChange
 
 
 }) => {
 
-    let dialog = dialogs.map((d) => <DialogsItem id={d.id} name={d.name}/>)
-    let message = messages.map((m) => <Message message={m.message}/>)
+    let dialog =  dialogsPage.dialogsData.map((d) => <DialogsItem id={d.id} name={d.name}/>)
+    let message = dialogsPage.messagesData.map((m) => <Message message={m.message}/>)
 
     const onClickHandler = () => {
-        sendMessageCreator()
+        sendMessage()
     }
 
    const onInputChange = (e: ChangeEvent<HTMLTextAreaElement>)=> {
@@ -50,7 +50,7 @@ type typeForDialogs = {
             </div>
             <div className={s.messages}>
             <div> {message}</div>
-                <div> <textarea value={newMessageBody}
+                <div> <textarea value={dialogsPage.newMessageBody}
                                 placeholder={'Enter your message'}
                                 onChange={onInputChange}
                 /></div>
