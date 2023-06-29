@@ -6,7 +6,7 @@ import {Navbar} from "./Components/Navbar/Navbar";
 import {Profile} from "./Components/Profile/Profile";
 import {Dialogs} from "./Components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
-import {actionType, typeStore,} from "./Redux/State";
+import {actionType, typeStore,} from "./Redux/Store";
 
 type dialogsTypeProps = {
     id: number

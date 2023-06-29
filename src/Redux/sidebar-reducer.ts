@@ -1,6 +1,4 @@
 import {actionType, dialogType} from "./Store";
-import {typeMyPostsProps} from "../App";
-
 
 let initialState: dialogType = {
     dialog: {
@@ -30,20 +28,8 @@ let initialState: dialogType = {
 }
 
 
-export const dialogReducer = (state: dialogType = initialState, action: actionType): dialogType => {
 
-    switch (action.type){
-        case "UPDATE-NEW-MESSAGE-BODY":
-            state.dialog.newMessageBody = action.body;
-            return state
-        case "SEND-MESSAGE" :
-            let body = state.dialog.newMessageBody;
-            state.dialog.newMessageBody = '';
-            state.dialog.messagesData.push({id: new Date().getDate(), message: body})
-            return state
-        default:
-            return state
 
-    }
-
+export  const  sidebarReducer = (state: dialogType = initialState,  action: actionType) => {
+    return state
 }

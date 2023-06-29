@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {StateType, store, typeStore} from './Redux/State'
+import {StateType, store, typeStore} from './Redux/Store'
 
 
 export let RerenderEntireTree = (state: StateType) => {

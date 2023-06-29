@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {Message} from "./Message/Message";
 import {DialogsItem} from "./Dialogitem/Dialogitem";
 import React, {ChangeEvent} from "react";
-import {actionType, sendMessageCreator, typeStore, updateNewMessageBodyCreator} from "../../Redux/State";
+import {actionType, sendMessageCreator, typeStore, updateNewMessageBodyCreator} from "../../Redux/Store";
 
 type dialogsTypeProps = {
     id: number

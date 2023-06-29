@@ -2,7 +2,15 @@ import {typeMyPostsProps} from "../App";
 import {dialogReducer} from "./dialog-reducer";
 import {profileReducer} from "./profile-reducer";
 
-///////////////////////////////////////////////////////////
+export type dialogTypeWithoutPost = {
+    dialog: {
+        dialogsData: Array<dialogsData>
+        messagesData: Array<messagesDataType>
+        newMessageBody: string
+    }
+}
+
+
 export type dialogType = {
     dialog: {
         dialogsData: Array<dialogsData>
@@ -60,7 +68,8 @@ export type  UpdateNewMessageBodyType = {
 export type SendMessageType = {
     type: "SEND-MESSAGE"
 }
-/////////////////////////////////////////////////////////////
+
+
 export type actionType = AddPostActionType | UpdateActionType | UpdateNewMessageBodyType | SendMessageType
 
 
@@ -107,7 +116,7 @@ export let store: typeStore = {
                 {id: 4, message: "fine"},
                 {id: 5, message: "Yo"},
             ],
-            newMessageBody: ""
+            newMessageBody: " "
         },
         post: {
             postData: [

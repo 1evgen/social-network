@@ -2,6 +2,7 @@ import React, {LegacyRef} from "react";
 import s from './MyPost.module.css'
 import {Post} from "./Post/Post";
 import {actionType, addPostActionCreator, changePostAC, store, typeStore} from "../../../Redux/Store";
+import {MyPost} from "./MyPost";
 
 
 
@@ -21,7 +22,7 @@ type MyPostMainType = {
 }
 
 // addPostCallback(text)
-export const MyPost: React.FC<MyPostMainType> = (props) => {
+export const MyPostContainer: React.FC<MyPostMainType> = (props) => {
     const {store, myPostsFromProfile, dispatch } = props
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
@@ -42,15 +43,16 @@ export const MyPost: React.FC<MyPostMainType> = (props) => {
     let posts = myPostsFromProfile.map((el) => <Post key={el.id} messagePost={el.message} counterLike={el.likesCount}/>)
 
     return (
-        <div>
-            <div>
-                My posts
-                <div>
-                    <textarea ref={newPostElement}  onChange={onChangeHandler} value={store._state.post.newPostText} />
-                    <button onClick={addPost}>Add post</button>
-                </div>
-            </div>
-            {posts}
+         <div>
+        {/*//     <div>*/}
+        {/*//         My posts*/}
+        {/*//         <div>*/}
+        {/*//             <textarea ref={newPostElement}  onChange={onChangeHandler} value={store._state.post.newPostText} />*/}
+        {/*//             <button onClick={addPost}>Add post</button>*/}
+        {/*//         </div>*/}
+        {/*//     </div>*/}
+        {/*//     {posts}*/}
+
         </div>
     )
 }
