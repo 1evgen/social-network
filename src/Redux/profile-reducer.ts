@@ -20,7 +20,7 @@ let initialState: PostType = {
             { id: 1, message: "Hi how are you", likesCount: 15 },
             { id: 2, message: "Hi, i'm fine thanks", likesCount: 5 },
         ],
-        newPostText: "it-kamasutra.com"
+        newPostText: "enter your post"
     },
 }
 export type actionType = AddPostActionType | UpdateActionType
@@ -38,23 +38,21 @@ export const changePostAC = (newText: string): UpdateActionType => {
     }
 }
 
-
 export const profileReducer = (state = initialState ,  action: actionType): PostType=> {
 
     switch (action.type) {
         case "ADD-POST":
-            console.log('from reducer')
             const newPostText = state.post.newPostText
             let newPost: typeMyPostsProps = {
-                id:Date.now(),
+                id: Date.now(),
                 message: newPostText,
                 likesCount: 10,
             }
-            state.post.postData.push(newPost);
-            // return {...state, post: {...state.post, postData: [...state.post.postData, newPost]}}
-            return {...state}
+            return {...state,
+                post: {...state.post, postData: [...state.post.postData, newPost], newPostText: ''}}
+
         case "UPDATE-POST":
-            state.post.newPostText = action.newText;
+          return {...state, post: {...state.post, newPostText: action.newText}}
             return state
         default:
             return state

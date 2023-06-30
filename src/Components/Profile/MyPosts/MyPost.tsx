@@ -1,6 +1,5 @@
 import React, {LegacyRef} from "react";
 import {Post} from "./Post/Post";
-import {AppStateType} from "../../../Redux/ReduxStore";
 import {PostType} from "../../../Redux/profile-reducer";
 
 
@@ -14,8 +13,6 @@ type typeMyPostsProps = {
 type MyPostMainType = {
     upDateNewPostText: (el: string) => void
     addPost: ()=> void
-    // myPostsFromProfile: Array<typeMyPostsProps>
-    // value: string
     profile: PostType
 }
 

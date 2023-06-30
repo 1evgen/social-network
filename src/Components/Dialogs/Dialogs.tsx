@@ -17,11 +17,8 @@ type messageTypeProps = {
 
 type typeForDialogs = {
      dialogsPage: DialogsPageType
-     // dialogs: Array<dialogsTypeProps>
-     // messages: Array<messageTypeProps>
      sendMessage: () => void
      onNewMessageChange: (body: string)=> void
-     // newMessageBody: string
 }
 
  export const Dialogs: React.FC<typeForDialogs> = ({
@@ -32,8 +29,8 @@ type typeForDialogs = {
 
 }) => {
 
-    let dialog =  dialogsPage.dialogsData.map((d) => <DialogsItem id={d.id} name={d.name}/>)
-    let message = dialogsPage.messagesData.map((m) => <Message message={m.message}/>)
+    let dialog =  dialogsPage.dialogsData.map((d) => <DialogsItem key={d.id} id={d.id} name={d.name}/>)
+    let message = dialogsPage.messagesData.map((m) => <Message key={m.id} message={m.message}/>)
 
     const onClickHandler = () => {
         sendMessage()
