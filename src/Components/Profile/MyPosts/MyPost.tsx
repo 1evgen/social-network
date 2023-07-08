@@ -3,12 +3,6 @@ import {Post} from "./Post/Post";
 import {PostType} from "../../../Redux/profile-reducer";
 
 
-type typeMyPostsProps = {
-    id: number
-    message: string
-    likesCount: number
-
-}
 
 type MyPostMainType = {
     upDateNewPostText: (el: string) => void
