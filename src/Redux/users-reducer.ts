@@ -1,10 +1,9 @@
 import {AddPostActionType, UpdateActionType} from "./Store";
 
-
 export type infoAboutUserType = {
     id: number,
     photoUrl: string
-    fullName: string
+    name: string
     status: string
     followed: boolean
     location: LocationType
@@ -33,24 +32,6 @@ type SetUserACType = {
 
 export type  ActionType = FollowACType | UnfollowACType | SetUserACType
 let initialState: UsersType = {users:[]};
-       // users :  [
-       //      { id: 1, photoUrl: 'https://icdn.caughtoffside.com/wp-content/uploads/2021/08/1006192898.jpg',
-       //          fullName: 'Harry Kane', status:  "I'd like to find a new club.",followed: false,
-       //          location: {city: 'London', country: 'England'}},
-       //
-       //      { id: 2,photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHQm7zE-kUqB4_a2LkHooO29_AFokn9-JN8g&usqp=CAU',
-       //          fullName: 'Harry Maguire', status:  "I'm Harry Maguire.",followed: true,
-       //          location: {city: 'Manchester', country: 'England'}},
-       //
-       //     { id: 1,photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRewKpe7LI7bOMFxd4M1RS78UmXZNiUDGT2Hg&usqp=CAU',
-       //          fullName: 'Erling Haaland', status:  "Man city is champion",followed: true,
-       //          location: {city: 'Manchester',country: 'Norway'}},
-       //
-       //     { id: 1,photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO9Obc9H-NHvvGNaUWi50lVUG0MQRTivTGMQ&usqp=CAU',
-       //         fullName: 'Mohamed Salah', status:  'You\'ll Never Walk Alone', followed: false,
-       //         location: {city: 'Liverpool', country: 'Egypt' }}
-       //  ]
-
 
 export const usersReducer = (state = initialState ,  action: ActionType): UsersType=> {
 
