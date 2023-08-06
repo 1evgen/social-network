@@ -1,7 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
-import {ActionType, followAC, infoAboutUserType, setUserAC, unFollowAC, UsersType} from "../../Redux/users-reducer";
+import {
+    ActionType,
+    followAC,
+    infoAboutUserType,
+    setCurrentPageAC, setTotalCountAC,
+    setUserAC,
+    unFollowAC,
+    UsersType
+} from "../../Redux/users-reducer";
 import {Dispatch} from "redux";
 import {UsersC} from "./UsersC";
 
@@ -9,17 +17,25 @@ import {UsersC} from "./UsersC";
 
 export type mapStateToPropsType = {
     usersPage: UsersType
+    pageSize: number
+    totalUserCount: number
+    currentPage: number
 }
 
 export type MapDispatchToPropsType = {
         follow: (userID: number)=> void
         unFollow: (userID: number)=> void
         setUsers: (user: Array<infoAboutUserType>)=> void
+        setCurrentPage: (pageNumber: number) => void
+        setTotalCount: (totalCount: number) => void
 }
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         return {
-               usersPage: state.usersPage
+               usersPage: state.usersPage,
+               pageSize: state.usersPage.pageSize,
+               totalUserCount: state.usersPage.totalUserCount,
+               currentPage: state.usersPage.currentPage
         }
 }
 
@@ -35,8 +51,13 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionType>): MapDispatchToPropsT
         },
         setUsers: (user: Array<infoAboutUserType>) => {
             dispatch(setUserAC(user))
+        },
+        setCurrentPage: (pageNumber: number)=> {
+            dispatch(setCurrentPageAC(pageNumber))
+    },
+        setTotalCount: (totalCount)=> {
+            dispatch(setTotalCountAC(totalCount))
         }
-
     }
 
 

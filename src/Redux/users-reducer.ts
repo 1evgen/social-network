@@ -13,7 +13,10 @@ export type LocationType = {
     country: string
 }
 export type UsersType = {
-   users: Array<infoAboutUserType>
+    users: Array<infoAboutUserType>
+    pageSize: number
+    totalUserCount: number
+    currentPage: number
 }
 
 
@@ -30,8 +33,27 @@ type SetUserACType = {
     user:  Array<infoAboutUserType>
 }
 
-export type  ActionType = FollowACType | UnfollowACType | SetUserACType
-let initialState: UsersType = {users:[]};
+type SetCurrentPageType = {
+    type: "SET-CURRENT-PAGE"
+    currentPage: number
+}
+
+type SetTotalCount = {
+    type: "SET-TOTAL-COUNT"
+    totalCount: number
+}
+
+export type  ActionType = FollowACType | UnfollowACType | SetUserACType | SetCurrentPageType | SetTotalCount
+
+
+let initialState: UsersType = {
+    users: [],
+    pageSize: 100,
+    totalUserCount: 0,
+    currentPage: 1
+}
+
+
 
 export const usersReducer = (state = initialState ,  action: ActionType): UsersType=> {
 
@@ -45,7 +67,16 @@ export const usersReducer = (state = initialState ,  action: ActionType): UsersT
                 users:
                     state.users.map((el)=> el.id === action.userID ? {...el, followed: false}:el)}
         case 'SET-USER':
-        return  {...state, users: [...state.users, ...action.user]}
+            return  {...state, users: [...action.user]}
+        case  "SET-CURRENT-PAGE":
+            return  {
+                ...state, currentPage: action.currentPage
+            }
+        case "SET-TOTAL-COUNT":
+            return {
+                ...state, totalUserCount: action.totalCount
+            }
+
         default :
             return state
     }
@@ -74,9 +105,19 @@ export const setUserAC = (user: Array<infoAboutUserType>) => {
     }
 }
 
+export const setCurrentPageAC = (currentPage: number)=> {
+    return {
+        type: "SET-CURRENT-PAGE" as const,
+        currentPage: currentPage
+    }
+}
 
-
-
+export  const setTotalCountAC = (totalCount: number) => {
+    return {
+        type: "SET-TOTAL-COUNT" as const,
+        totalCount: totalCount
+    }
+}
 
 
 
