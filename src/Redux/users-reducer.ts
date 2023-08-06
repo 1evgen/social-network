@@ -19,7 +19,6 @@ export type UsersType = {
     currentPage: number
 }
 
-
 type FollowACType = {
     type: 'FOLLOW'
     userID: number
@@ -80,10 +79,7 @@ export const usersReducer = (state = initialState ,  action: ActionType): UsersT
         default :
             return state
     }
-
 }
-
-
 
 export const followAC = (userID: number) => {
     return {
