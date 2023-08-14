@@ -6,6 +6,7 @@ import {Profile} from "./Components/Profile/Profile";
 import {Route} from "react-router-dom";
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
 export type typeMyPostsProps = {
     id: number
@@ -26,7 +27,7 @@ const App: React.FC = () => {
                 </Route>
 
                 <Route path='/profile' render={() =>
-                     <Profile />}>
+                     <ProfileContainer />}>
                 </Route>
                 <Route path= '/users' render={()=> <UsersContainer />}></Route>
             </div>

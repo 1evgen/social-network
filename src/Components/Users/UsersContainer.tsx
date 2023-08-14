@@ -75,8 +75,6 @@ export class UsersContainer extends React.Component<PropsType> {
     }
 }
 
-
-
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         return {
                 usersPage: state.usersPage,
@@ -89,28 +87,31 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
 export type UsersPropsType = mapStateToPropsType & MapDispatchToPropsType
 
-const mapDispatchToProps = (dispatch: Dispatch<ActionType>): MapDispatchToPropsType => {
-    return {
-        follow: (userID: number) => {
-            dispatch(followAC(userID))
-        },
-        unFollow: (userID: number) => {
-            dispatch(unFollowAC(userID))
-        },
-        setUsers: (user: Array<infoAboutUserType>) => {
-            dispatch(setUserAC(user))
-        },
-        setCurrentPage: (pageNumber: number)=> {
-            dispatch(setCurrentPageAC(pageNumber))
-    },
-        setTotalCount: (totalCount)=> {
-            dispatch(setTotalCountAC(totalCount))
-        },
-        toggleIsFetching:(isFetching)=> {
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
+// const mapDispatchToProps = (dispatch: Dispatch<ActionType>): MapDispatchToPropsType => {
+//     return {
+//         follow: (userID: number) => {
+//             dispatch(followAC(userID))
+//         },
+//         unFollow: (userID: number) => {
+//             dispatch(unFollowAC(userID))
+//         },
+//         setUsers: (user: Array<infoAboutUserType>) => {
+//             dispatch(setUserAC(user))
+//         },
+//         setCurrentPage: (pageNumber: number)=> {
+//             dispatch(setCurrentPageAC(pageNumber))
+//     },
+//         setTotalCount: (totalCount)=> {
+//             dispatch(setTotalCountAC(totalCount))
+//         },
+//         toggleIsFetching:(isFetching)=> {
+//             dispatch(toggleIsFetchingAC(isFetching))
+//         }
+//     }
+//}
+export default connect<mapStateToPropsType,MapDispatchToPropsType,{},AppStateType>(mapStateToProps,
+    {follow: followAC, unFollow: unFollowAC, setUsers: setUserAC,
+                      setCurrentPage: setCurrentPageAC, toggleIsFetching:toggleIsFetchingAC,
+                      setTotalCount:setTotalCountAC
 
-
-}
-export default connect<mapStateToPropsType,MapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps)(UsersContainer)
+})(UsersContainer)

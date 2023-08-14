@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../../assets/imgs/user.png";
 import {UsersType} from "../../Redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 
 type UsersPropsType = {
@@ -25,7 +26,6 @@ export const Users = (props: UsersPropsType) => {
         pages.push(i)
     }
     return <div>
-        {/*<Users/>*/}
         {pages.map((p) => {
             return <span className={props.currentPage === p ? styles.selectedPage : ''}
                          onClick={() => {
@@ -38,9 +38,12 @@ export const Users = (props: UsersPropsType) => {
         {
             props.usersPage.users.map((u) => <div key={u.id}>
                         <span>
-                            <div> <img className={styles.userPhoto}
+                            <div> 
+                                <NavLink to={'/profile/'+ u.id}>
+                                <img className={styles.userPhoto}
                                        src={u.photoUrl ? u.photoUrl : userPhoto}
                                        alt="photo"/>
+                                </NavLink>
                             </div>
                             <div>
                                 {u.followed
