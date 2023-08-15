@@ -1,11 +1,28 @@
 
 .header {
     grid-area: h;
-    background-color: #1a1a33
+    background-color: #1a1a33;
+    display: flex;
+    justify-content: space-between;
 
 }
 
-.header img {
+.container{
+
+}
+
+.logo img {
+    max-width: 70px;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+.login{
+    color: #ceb107;
+    padding: 25px;
+}
+
+.login__img {
     max-width: 70px;
     margin-left: 20px;
     padding: 5px;
