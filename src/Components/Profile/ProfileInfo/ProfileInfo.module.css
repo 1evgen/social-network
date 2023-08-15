@@ -1,3 +1,10 @@
+
+.profileInfo{
+    background-color: rgb(245, 255, 98); ;
+    color: #318380;
+    font-weight: bold;
+}
+
 .descriptionBlock {
     padding: 10px;
 }
@@ -5,5 +12,15 @@
 
 .descriptionBlock img{
    max-width: 200px;
+
+}
+.HeroBanner{
+    max-width: 100%;
+    padding-bottom: 30px;
+    height: auto;
+}
+.HeroBanner img{
+    max-width: 100%;
+    max-height: 550px;
 
 }

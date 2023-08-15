@@ -2,6 +2,8 @@ import React from "react";
 import s from './ProfileInfo.module.css'
 import {ProfileType} from "../../../Redux/profile-reducer";
 import {Preloader} from "../../Common/Preloader/Preloader";
+import HeroBanner from '../../../assets/imgs/preview.jpg'
+
 
 type ProfileInfoType ={
     profile: ProfileType
@@ -15,15 +17,14 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     }
     const profilePhoto = props.profile.photos.small || "";
     return (
-        <div>
-            <div>
-                <img src="https://e0.365dm.com/21/06/2048x1152/skysports-premier-league-fixtures_5415976.jpg" alt=""/>
+        <div className={s.profileInfo}>
+            <div className={s.HeroBanner}>
+                    <img src={HeroBanner}/>
             </div>
+
             <div className={s.descriptionBlock}>
               <img src={profilePhoto}/>
                 {props.profile.fullName}
-
-
             </div>
         </div>
     )

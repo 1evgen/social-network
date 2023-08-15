@@ -1,9 +1,10 @@
 
 .item {
-    color: darkblue;
+    color: #318380;
+
 }
 
 .item img {
-    width: 80px;
+    max-width: 120px;
     border-radius: 30px;
 }

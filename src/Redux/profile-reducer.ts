@@ -48,8 +48,8 @@ export type setUserProfileActionType = {
 let initialState: PostType = {
     post: {
         postData: [
-            { id: 1, message: "Hi how are you", likesCount: 15 },
-            { id: 2, message: "Hi, i'm fine thanks", likesCount: 5 },
+            { id: 1, message: "コワブンガ", likesCount: 15 },
+            { id: 2, message: "cowabunga", likesCount: 5 },
         ],
         newPostText: "enter your post",
     },

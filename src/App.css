@@ -1,4 +1,7 @@
-
+*{
+  margin: 0;
+  padding: 0;
+}
 .app-wrapper {
   margin: 0 auto;
   display: grid;
@@ -15,7 +18,6 @@
 
 .app-wrapper-content {
   grid-area: c;
-  background-color: rgb(189, 198, 222);
 
 }
 
