@@ -1,4 +1,3 @@
-
 export type InfoAuthType = {
     id: number | null,
     email: string,
@@ -6,22 +5,14 @@ export type InfoAuthType = {
 }
 
 
-
-export type StateType = {
-    resultCode: number
-    messages: Array<string>,
-    data:  InfoAuthType
+export type StateType = InfoAuthType & {
     isAuth: boolean
 }
 
 let initialState = {
-    resultCode: 0,
-    messages: [],
-    data: {
-        id: null,
-        email: '',
-        login: ''
-    },
+    id: null,
+    email: '',
+    login: '',
     isAuth: false
 
 }
@@ -36,16 +27,14 @@ export type actionType = setUserDataActionType
 export const authReducer = (state = initialState, action: actionType): StateType => {
     switch (action.type) {
         case "SET-USER-DATA":
-        return {
-            ...state, ...action.data, isAuth: true
-
-
-        }
+            return {
+                ...state, ...action.data, isAuth: true
+            }
         default :
-            return  state
+            return state
     }
 }
 
 export const setUserDataAC = (data: InfoAuthType): setUserDataActionType => {
-        return {type: "SET-USER-DATA", data}
+    return {type: "SET-USER-DATA", data}
 }

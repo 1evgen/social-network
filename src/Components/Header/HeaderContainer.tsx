@@ -10,7 +10,6 @@ import {Dispatch} from "redux";
 
 type mapStateToPropsType = {
     auth: StateType
-
 }
 export type mapDispatchToPropsType = {
     setAuthUserData: (data: InfoAuthType) => void
@@ -22,14 +21,13 @@ type PropsType = mapStateToPropsType & mapDispatchToPropsType
 export  class HeaderContainer extends React.Component<PropsType>{
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0//auth/me', {
+        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
             withCredentials: true
         })
             .then(response => {
              if(response.data.resultCode === 0){
-                 this.props.setAuthUserData(response.data.login)
+                 this.props.setAuthUserData(response.data.data)
              }
-             console.log(response.data)
             })
     }
 

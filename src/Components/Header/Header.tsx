@@ -10,16 +10,23 @@ type HeaderPropsType = {
 }
 
 export const Header = (props: HeaderPropsType) => {
+
     return (
         <header className={s.header}>
-
+            <div className={s.container}>
             <div className={s.logo}>
             <img src={logo}/>
             </div>
             <div className={s.loginBlock}>
-                {props.auth.isAuth ? <img className={s.login__img} src={logo__img}/> :
+                {props.auth.isAuth ?
+                    <div className={s.authUser} >
+                    <img className={s.login__img} src={logo__img}/>
+                    <div className={s.nameLogin}>{props.auth.login}</div>
+                    </div>
+                    :
                     <NavLink className={s.login} to={'/login'}>Login</NavLink> }
 
+            </div>
             </div>
         </header>
     )
