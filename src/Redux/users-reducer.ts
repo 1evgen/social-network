@@ -1,25 +1,31 @@
 import {AddPostActionType, UpdateActionType} from "./Store";
 
 export type infoAboutUserType = {
-    id: number,
-    photoUrl: string
-    name: string
-    status: string
-    followed: boolean
-    location: LocationType
+    id: number;
+    name: string;
+    photos: {
+        small: string | null;
+        large: string | null;
+    };
+    status: string | null;
+    followed: boolean;
+};
 
-}
-export type LocationType = {
-    city: string,
-    country: string
-}
+// type LocationType = {
+//     city: string;
+//     country: string;
+// };
+
+
 export type UsersType = {
-    users: Array<infoAboutUserType>
-    pageSize: number
-    totalUserCount: number
-    currentPage: number
-    isFetching: boolean
-}
+    users: Array<infoAboutUserType>;
+    pageSize: number;
+    totalUserCount: number;
+    currentPage: number;
+    isFetching: boolean;
+};
+
+
 
 type FollowACType = {
     type: 'FOLLOW'

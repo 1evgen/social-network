@@ -1,9 +1,5 @@
-export type InfoAuthType = {
-    id: number | null,
-    email: string,
-    login: string
-}
 
+import {InfoAuthType} from "../API/api";
 
 export type StateType = InfoAuthType & {
     isAuth: boolean
@@ -14,7 +10,6 @@ let initialState = {
     email: '',
     login: '',
     isAuth: false
-
 }
 
 type setUserDataActionType = {

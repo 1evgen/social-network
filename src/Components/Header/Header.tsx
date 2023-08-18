@@ -2,8 +2,9 @@ import React from "react";
 import s from './Header.module.css'
 import logo from '../../assets/imgs/pizza-logo.png';
 import {NavLink} from "react-router-dom";
-import {InfoAuthType, StateType} from "../../Redux/auth-reducer";
+import {StateType} from "../../Redux/auth-reducer";
 import logo__img from '../../assets/imgs/logo__img.png'
+import {InfoAuthType} from "../../API/api";
 type HeaderPropsType = {
     auth: StateType
     setAuthUserData: (data: InfoAuthType)=> void

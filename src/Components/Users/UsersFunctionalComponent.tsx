@@ -19,7 +19,7 @@ export const UsersFunctionalComponent = (props: UsersPropsType) => {
                     props.usersPage.users.map((u) => <div key={u.id}>
                         <span>
                             <div> <img className={styles.userPhoto}
-                                       src={u.photoUrl ? u.photoUrl : userPhoto}
+                                       src={u.photos.small ? u.photos.small : userPhoto}
                                        alt="photo"/>
                             </div>
                             <div>
