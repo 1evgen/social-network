@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../../assets/imgs/user.png";
 import {UsersType} from "../../Redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {usersApi} from "../../API/api";
+
 
 type UsersPropsType = {
     totalUserCount: number
@@ -11,10 +11,10 @@ type UsersPropsType = {
     currentPage: number
     onPageChanged: (pageNumber: number)=> void
     usersPage: UsersType
-    follow: (userID: number)=> void
-    unFollow: (userID: number)=> void
-    toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
+    // toggleIsFollowingProgress: (isFetching: boolean, userId: number) => void
     followingInProgress: Number[]
+    followThunkCreator: (userID: number)=> void
+    unfollowThunkCreator: (userID: number)=> void
 }
 
 
@@ -27,27 +27,11 @@ export const Users = (props: UsersPropsType) => {
 
 
     const followUserHandler = (userId: number)=> {
-        props.toggleIsFollowingProgress(true, userId)
-        console.log(props.followingInProgress)
-        usersApi.followUser(userId).then(response => {
-            if(response.data.resultCode === 0){
-                props.follow(userId)
-            }
-            props.toggleIsFollowingProgress(false,userId)
-            console.log(props.followingInProgress)
-        })
+        props.followThunkCreator(userId)
     }
 
 const  unfollowUserHandler = (userId: number)=> {
-
-        props.toggleIsFollowingProgress(true, userId)
-        usersApi.unfollowUser(userId).then(response => {
-            if(response.data.resultCode === 0){
-                props.unFollow(userId)
-            }
-            props.toggleIsFollowingProgress(false, userId)
-        })
-
+        props.unfollowThunkCreator(userId)
 }
 
     return <div>

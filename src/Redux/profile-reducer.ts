@@ -55,9 +55,9 @@ let initialState: PostType = {
     },
     profile: null
 }
-export type actionType = AddPostActionType | UpdateActionType | setUserProfileActionType
+export type ProfileActionType = AddPostActionType | UpdateActionType | setUserProfileActionType
 
-export const profileReducer = (state = initialState ,  action: actionType): PostType=> {
+export const profileReducer = (state = initialState ,  action: ProfileActionType): PostType=> {
 
     switch (action.type) {
         case "ADD-POST":
