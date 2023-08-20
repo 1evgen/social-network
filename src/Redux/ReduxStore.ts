@@ -3,7 +3,7 @@ import {dialogReducer} from "./dialog-reducer";
 import {ProfileActionType, profileReducer} from "./profile-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {getUserThunkCreator, UserActionType, usersReducer} from "./users-reducer";
-import {authReducer} from "./auth-reducer";
+import {AuthActionType, authReducer} from "./auth-reducer";
 import thunk, {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {useDispatch} from "react-redux";
 
@@ -20,6 +20,9 @@ export type AppStateType = ReturnType<typeof rootReducer>
 
 export let store = createStore(rootReducer, applyMiddleware(thunk));
 
-export type AppDispatch = ThunkDispatch<AppStateType, void, UserActionType>
 
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,AppStateType, unknown, UserActionType>
+export type AppActionType = UserActionType | ProfileActionType | AuthActionType
+
+export type AppDispatch = ThunkDispatch<AppStateType, void, AppActionType>
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,AppStateType, unknown, AppActionType>

@@ -1,5 +1,7 @@
 import {AddPostActionType, UpdateActionType} from "./Store";
 import {typeMyPostsProps} from "../App";
+import {AppDispatch, AppThunk} from "./ReduxStore";
+import {usersApi} from "../API/api";
 
 type PostDataType = {
     id: number;
@@ -94,3 +96,13 @@ export const changePostAC = (newText: string): UpdateActionType => {
 export const setUserProfileAC = (profile: ProfileType): setUserProfileActionType=> {
     return {type: "SET-USER-PROFILE", profile}
 }
+
+
+export const getProfileThunkCreator = (userId: string): AppThunk => (dispatch)=> {
+    return usersApi.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfileAC(response.data))
+            })
+}
+
+///  AppThunk<Promise<void>>

@@ -2,18 +2,15 @@ import React from 'react';
 import {connect} from "react-redux";
 import {AppDispatch, AppStateType} from "../../Redux/ReduxStore";
 import {
-    followAC, followThunkCreator, getUserThunkCreator,
+   followThunkCreator, getUserThunkCreator,
     infoAboutUserType,
-    setCurrentPageAC, setTotalCountAC,
-    setUserAC, toggleIsFetchingAC, toggleIsFollowingProgressAC,
-    unFollowAC, unfollowThunkCreator,
+    setCurrentPageAC,
+    setUserAC,
+    unfollowThunkCreator,
     UsersType
 } from "../../Redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
-import {usersApi} from "../../API/api";
-import {Dispatch} from "redux";
-
 
 
 export type mapStateToPropsType = {
@@ -88,9 +85,6 @@ const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchToPropsType=> {
         setCurrentPage: (pageNumber)=> {
             return dispatch(setCurrentPageAC(pageNumber))
         } ,
-        // toggleIsFollowingProgress: (isFetching, userId)=> {
-        //     return dispatch(toggleIsFollowingProgressAC(isFetching, userId))
-        // },
         getUserThunkCreator:(currentPage, pageSize )=> {
             return dispatch(getUserThunkCreator(currentPage, pageSize))
         },

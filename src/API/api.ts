@@ -1,4 +1,36 @@
 import axios from "axios";
+let instance = axios.create({
+    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
+    withCredentials: true,
+    headers: {
+        'API-KEY': '7c470b5d-d209-4290-8749-e903fabbcb56',
+    }
+
+})
+
+
+export const usersApi = {
+    getUsers: (currentPage: number, pageSize: number) => {
+        return instance.get<ResponseUsersType>(`users?page=${currentPage}&count=${pageSize}`)
+            .then((response)=> response.data)
+    },
+    getMe: ()=> {
+        return instance.get<AuthResponseType>(`/auth/me`)
+            .then((response)=> response.data)
+    },
+    followUser: (userId: number)=> {
+        return instance.post<FollowUnFollowUserType>(`/follow/${userId}`)
+    },
+    unfollowUser: (userId: number)=> {
+        return instance.delete<FollowUnFollowUserType>(`/follow/${userId}`)
+    },
+    getProfile: (userId: string)=> {
+        return instance.get<GetProfileResponseType>(`/profile/${userId}`)
+    }
+}
+
+
+
 
 export type UserType = {
     name: string;
@@ -38,30 +70,25 @@ type FollowUnFollowUserType = {
     data: {}
 }
 
-let instance = axios.create({
-    baseURL: 'https://social-network.samuraijs.com/api/1.0/',
-    withCredentials: true,
-    headers: {
-        'API-KEY': '2075f7da-a7fe-49a8-9778-1b19c73defb0'
-    }
-
-})
-
-
-export const usersApi = {
-    getUsers: (currentPage: number, pageSize: number) => {
-        return instance.get<ResponseUsersType>(`users?page=${currentPage}&count=${pageSize}`)
-            .then((response)=> response.data)
-    },
-    getAuth: ()=> {
-        return instance.get<AuthResponseType>(`/auth/me`)
-            .then((response)=> response.data)
-    },
-    followUser: (userId: number)=> {
-        return instance.post<FollowUnFollowUserType>(`/follow/${userId}`)
-    },
-    unfollowUser: (userId: number)=> {
-        return instance.delete<FollowUnFollowUserType>(`/follow/${userId}`)
+type GetProfileResponseType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName:string
+    contacts: ContactsType
+    photos: {
+        small: string | null
+        large: string | null
     }
 }
 
+type ContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}

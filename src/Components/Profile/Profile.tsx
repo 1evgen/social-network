@@ -6,17 +6,22 @@ import {ProfileType, setUserProfileActionType} from "../../Redux/profile-reducer
 
 type ProfileMainType = {
     profile: ProfileType
-    setUserProfile: (profile: ProfileType) => void
+
+
 }
 
 export const Profile: React.FC<ProfileMainType> = ({
                                                        profile,
-                                                       setUserProfile
+
+
                                                    }) => {
 
     return (
         <div className={s.content}>
-            <ProfileInfo profile={profile} setUserProfile={setUserProfile}  />
+            <ProfileInfo profile={profile}
+
+
+            />
             <MyPostContainer />
         </div>
     )

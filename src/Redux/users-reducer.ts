@@ -170,7 +170,7 @@ export const followThunkCreator = (userId: number)=> (dispatch: AppDispatch)=> {
         })
 }
 
-export const unfollowThunkCreator = (userId: number)=> (dispatch: AppDispatch)=> {
+export const unfollowThunkCreator = (userId: number): AppThunk => (dispatch)=> {
 
         dispatch(toggleIsFollowingProgressAC(true, userId))
         usersApi.unfollowUser(userId).then(response => {

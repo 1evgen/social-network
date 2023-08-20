@@ -7,7 +7,8 @@ import HeroBanner from '../../../assets/imgs/preview.jpg'
 
 type ProfileInfoType ={
     profile: ProfileType
-    setUserProfile: (profile: ProfileType) => void
+
+
 }
 
 
