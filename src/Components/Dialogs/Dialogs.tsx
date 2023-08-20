@@ -3,6 +3,7 @@ import {Message} from "./Message/Message";
 import {DialogsItem} from "./Dialogitem/Dialogitem";
 import React, {ChangeEvent} from "react";
 import {DialogsPageType} from "../../Redux/dialog-reducer";
+import {Redirect} from "react-router-dom";
 
 
 type dialogsTypeProps = {
@@ -19,13 +20,14 @@ type typeForDialogs = {
      dialogsPage: DialogsPageType
      sendMessage: () => void
      onNewMessageChange: (body: string)=> void
+     isAuth: boolean
 }
 
  export const Dialogs: React.FC<typeForDialogs> = ({
                                                         dialogsPage,
                                                         sendMessage,
-                                                        onNewMessageChange
-
+                                                        onNewMessageChange,
+                                                        isAuth
 
 }) => {
 
@@ -40,6 +42,8 @@ type typeForDialogs = {
         let body = e.currentTarget.value
         onNewMessageChange(body)
    }
+
+   if(!isAuth) return  <Redirect to={"/login"}></Redirect>
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>

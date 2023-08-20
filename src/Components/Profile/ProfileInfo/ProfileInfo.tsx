@@ -29,5 +29,4 @@ export const ProfileInfo = (props: ProfileInfoType) => {
             </div>
         </div>
     )
-
 }

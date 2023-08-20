@@ -4,17 +4,25 @@ import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
 import {Dispatch} from "redux";
+import {DialogsPageType} from "../../Redux/dialog-reducer";
+
+
+type MapStateToPropsType = {
+    dialogsPage: DialogsPageType
+    isAuth: boolean
+}
 
 
 
 
 const mapStateToProps = (state: AppStateType )=> {
    return {
-     dialogsPage: state.dialogsPage
+     dialogsPage: state.dialogsPage,
+     isAuth: state.auth['isAuth']
    }
 }
 
-type MapStateToPropsType = ReturnType<typeof mapStateToProps>
+// type MapStateToPropsType = ReturnType<typeof mapStateToProps>
 
 type MapDispatchToPropsType = {
     onNewMessageChange: (body: string) => void

@@ -2,7 +2,8 @@ import React from "react";
 import s from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {MyPostContainer} from "./MyPosts/MyPostContainer";
-import {ProfileType, setUserProfileActionType} from "../../Redux/profile-reducer";
+import {ProfileType} from "../../Redux/profile-reducer";
+import {Redirect} from "react-router-dom";
 
 type ProfileMainType = {
     profile: ProfileType
@@ -13,15 +14,13 @@ type ProfileMainType = {
 export const Profile: React.FC<ProfileMainType> = ({
                                                        profile,
 
-
                                                    }) => {
+
+
 
     return (
         <div className={s.content}>
-            <ProfileInfo profile={profile}
-
-
-            />
+            <ProfileInfo profile={profile}/>
             <MyPostContainer />
         </div>
     )
