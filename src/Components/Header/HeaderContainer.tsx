@@ -3,7 +3,7 @@ import {Header} from "./Header";
 import {AuthActionType, AuthThunkCreator, setUserDataAC, StateType} from "../../Redux/auth-reducer";
 import {AppActionType, AppDispatch, AppStateType} from "../../Redux/ReduxStore";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {InfoAuthType, usersApi} from "../../API/api";
 
 
@@ -51,6 +51,9 @@ export const mapDispatchToProps = (dispatch: Dispatch<AppActionType>): mapDispat
             }
 }
 
-export default connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,mapDispatchToProps )(HeaderContainer)
+//export default connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,mapDispatchToProps )
+//(HeaderContainer)
 
-
+export default compose<React.ComponentType>(
+    connect<mapStateToPropsType, mapDispatchToPropsType, {}, AppStateType>(mapStateToProps,mapDispatchToProps )
+)(HeaderContainer)

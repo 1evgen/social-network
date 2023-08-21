@@ -11,6 +11,7 @@ import {
 } from "../../Redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
+import {compose} from "redux";
 
 
 export type mapStateToPropsType = {
@@ -99,5 +100,10 @@ const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchToPropsType=> {
 
 
 export type UsersPropsType = mapStateToPropsType & MapDispatchToPropsType
+//export default connect<mapStateToPropsType,MapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps
+// )(UsersContainer)
 
-export default connect<mapStateToPropsType,MapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps)(UsersContainer)
+export default compose<React.ComponentType>(
+    connect<mapStateToPropsType,MapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps)
+)
+(UsersContainer)

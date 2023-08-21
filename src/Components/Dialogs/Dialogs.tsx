@@ -43,7 +43,6 @@ type typeForDialogs = {
         onNewMessageChange(body)
    }
 
-   if(!isAuth) return  <Redirect to={"/login"}></Redirect>
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
