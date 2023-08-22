@@ -14,18 +14,14 @@ export type typeMyPostsProps = {
     likesCount: number
 }
 
-
 const App: React.FC = () => {
     return (
         <div className="app-wrapper">
             <HeaderContainer />
             <Navbar/>
-
             <div className="app-wrapper-content">
-
             <Route path='/dialogs' render={() => <DialogsContainer /> }>
                 </Route>
-
                 <Route path='/profile/:userId?' render={() =>
                      <ProfileContainer />}>
                 </Route>

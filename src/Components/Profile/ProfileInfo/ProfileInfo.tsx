@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css'
 import {ProfileType} from "../../../Redux/profile-reducer";
 import {Preloader} from "../../Common/Preloader/Preloader";
 import HeroBanner from '../../../assets/imgs/preview.jpg'
+import {ProfileStatus} from "./ProfileStatus";
 
 
 type ProfileInfoType ={
@@ -27,6 +28,10 @@ export const ProfileInfo = (props: ProfileInfoType) => {
               <img src={profilePhoto}/>
                 {props.profile.fullName}
             </div>
+            <div>
+                <ProfileStatus />
+            </div>
+
         </div>
     )
 }
