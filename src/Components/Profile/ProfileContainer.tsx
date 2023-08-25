@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import {AppDispatch, AppStateType} from "../../Redux/ReduxStore";
 import {
     getProfileThunkCreator,
-    ProfileType,
-    setUserProfileAC,
+    ProfileType, setStatusThunkCreator,
+    setUserProfileAC, updateStatusThunkCreator,
 } from "../../Redux/profile-reducer";
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
@@ -15,14 +15,17 @@ import {compose} from "redux";
 export type mapStateToPropsType = {
     profile: ProfileType
     isAuth: boolean
+    status: string
 }
 export type MapDispatchToPropsType = {
     setUserProfile: (profile: ProfileType) => void
     getProfileThunkCreator: (userId: string)=> void
+    setStatus: (userId: string)=> void
+    updateStatus: (status: string)=> void
 }
 
 type PathParamsType = {
-    userId: string,
+    userId: string ,
 }
 
 type OwnPropsType = mapStateToPropsType & MapDispatchToPropsType
@@ -37,16 +40,19 @@ export class ProfileContainer extends React.Component<PropsType> {
             userId = "2"
         }
             this.props.getProfileThunkCreator(userId)
+            this.props.setStatus(userId)
+
     }
 
     render() {
-        return <Profile profile={this.props.profile} />;
+        return <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />;
     }
 }
 
 const mapStateToProps = (state: AppStateType)=> ({
         profile: state.profile.profile,
-        isAuth: state.auth['isAuth']
+        isAuth: state.auth['isAuth'],
+        status: state.profile.status
 })
 
 const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchToPropsType => {
@@ -56,6 +62,12 @@ const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchToPropsType => {
         },
         getProfileThunkCreator: (userId)=> {
             dispatch(getProfileThunkCreator(userId))
+        },
+        setStatus: (userId)=> {
+            dispatch(setStatusThunkCreator(userId))
+        },
+        updateStatus: (status)=> {
+            dispatch(updateStatusThunkCreator(status))
         }
     }
 }

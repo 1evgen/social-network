@@ -1,4 +1,5 @@
 import axios from "axios";
+
 let instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
@@ -12,24 +13,36 @@ let instance = axios.create({
 export const usersApi = {
     getUsers: (currentPage: number, pageSize: number) => {
         return instance.get<ResponseUsersType>(`users?page=${currentPage}&count=${pageSize}`)
-            .then((response)=> response.data)
+            .then((response) => response.data)
     },
-    getMe: ()=> {
+    getMe: () => {
         return instance.get<AuthResponseType>(`/auth/me`)
-            .then((response)=> response.data)
+            .then((response) => response.data)
     },
-    followUser: (userId: number)=> {
+    followUser: (userId: number) => {
         return instance.post<FollowUnFollowUserType>(`/follow/${userId}`)
     },
-    unfollowUser: (userId: number)=> {
+    unfollowUser: (userId: number) => {
         return instance.delete<FollowUnFollowUserType>(`/follow/${userId}`)
     },
-    getProfile: (userId: string)=> {
-        return instance.get<GetProfileResponseType>(`/profile/${userId}`)
+    getProfile: (userId: string) => {
+        console.warn("use new API")
+        return profileAPI.getProfile(userId)
     }
 }
 
 
+export const profileAPI = {
+    getProfile: (userId: string) => {
+        return instance.get<GetProfileResponseType>(`/profile/${userId}`)
+    },
+    getStatus: (userId: string) => {
+        return instance.get(`/profile/status/${userId}`)
+    },
+    updateStatus: (status: string)=> {
+        return instance.put(`/profile/status`,{status: status})
+    }
+}
 
 
 export type UserType = {
@@ -74,7 +87,7 @@ type GetProfileResponseType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string
-    fullName:string
+    fullName: string
     contacts: ContactsType
     photos: {
         small: string | null
