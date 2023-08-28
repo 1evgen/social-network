@@ -22,7 +22,7 @@ export class ProfileStatus extends React.Component<PropsType>{
         this.setState({
             editMode: false
         })
-
+        this.props.updateStatus(this.state.status)
 
     }
 
@@ -31,7 +31,8 @@ export class ProfileStatus extends React.Component<PropsType>{
         this.setState({
             status: newStatus
         });
-        this.props.updateStatus(newStatus);
+      ///  this.props.updateStatus(newStatus);
+
     }
 
     render() {
@@ -39,7 +40,7 @@ export class ProfileStatus extends React.Component<PropsType>{
         return (
             <div>
                 {
-                    !this.state.editMode && <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+                    !this.state.editMode && <span onDoubleClick={this.activateEditMode}>{this.props.status || '-----' }</span>
                 }
                 {
                     this.state.editMode && <div>
