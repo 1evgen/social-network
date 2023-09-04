@@ -17,7 +17,6 @@ export class ProfileStatus extends React.Component<PropsType>{
                 editMode: true
             })
         }
-
         deactivateEditMode = ()=> {
         this.setState({
             editMode: false
@@ -38,7 +37,7 @@ export class ProfileStatus extends React.Component<PropsType>{
         this.setState({
             status: newStatus
         });
-      ///  this.props.updateStatus(newStatus);
+       // this.props.updateStatus(newStatus);
 
     }
 

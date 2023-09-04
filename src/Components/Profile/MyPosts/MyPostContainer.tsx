@@ -1,8 +1,8 @@
 import React from "react";
-import {actionType} from "../../../Redux/Store";
+//import {actionType} from "../../../Redux/Store";
 import {MyPost} from "./MyPost";
 import {connect} from "react-redux";
-import {AppStateType, store} from "../../../Redux/ReduxStore";
+import {AppActionType, AppStateType, store} from "../../../Redux/ReduxStore";
 import {PostType, addPostActionCreator, changePostAC} from "../../../Redux/profile-reducer";
 
 
@@ -18,7 +18,7 @@ const mapStateToProps = (state: AppStateType) => {
         profile: state.profile
     }
 }
-const mapDispatchToProps = (dispatch: (action: actionType) => void) => {
+const mapDispatchToProps = (dispatch: (action: AppActionType) => void) => {
     return {
         upDateNewPostText: (text: string) => {
             if (text || text === '') {

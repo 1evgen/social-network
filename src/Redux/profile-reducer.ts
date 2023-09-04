@@ -1,4 +1,4 @@
-import {AddPostActionType, UpdateActionType} from "./Store";
+
 import {typeMyPostsProps} from "../App";
 import {AppDispatch, AppThunk} from "./ReduxStore";
 import {profileAPI, usersApi} from "../API/api";
@@ -53,7 +53,14 @@ export type SetStatusActionType = {
     type: "SET-STATUS"
     status: string
 }
-
+export type AddPostActionType = {
+    type: "ADD-POST"
+    newPostText: string
+ }
+export type UpdateActionType = {
+    type: "UPDATE-POST"
+    newText: string
+}
 
 let initialState: PostType = {
     post: {

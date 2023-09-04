@@ -1,10 +1,9 @@
 import React from "react";
-import {sendMessageCreator,  updateNewMessageBodyCreator} from "../../Redux/Store";
-import {Dialogs} from "./Dialogs";
+import {AddMessageFormType, Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
 import {compose, Dispatch} from "redux";
-import {DialogsPageType} from "../../Redux/dialog-reducer";
+import {DialogsPageType, sendMessageCreator} from "../../Redux/dialog-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {withRouter} from "react-router-dom";
 
@@ -13,7 +12,9 @@ type MapStateToPropsType = {
     dialogsPage: DialogsPageType
     isAuth: boolean
 }
-
+type MapDispatchToPropsType = {
+    sendMessage: (values: AddMessageFormType) => void
+}
 
 
 
@@ -24,20 +25,10 @@ const mapStateToProps = (state: AppStateType )=> {
    }
 }
 
-// type MapStateToPropsType = ReturnType<typeof mapStateToProps>
-
-type MapDispatchToPropsType = {
-    onNewMessageChange: (body: string) => void
-    sendMessage: () => void
-}
-
 const mapDispatchToProps = (dispatch: Dispatch) => {
    return {
-       onNewMessageChange: (body: string) => {
-        dispatch(updateNewMessageBodyCreator(body))
-    },
-    sendMessage: () => {
-        dispatch(sendMessageCreator())
+    sendMessage: (values: AddMessageFormType) => {
+        dispatch(sendMessageCreator(values))
     }
 }
 }

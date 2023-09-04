@@ -3,51 +3,51 @@ import {dialogReducer} from "./dialog-reducer";
 import {profileReducer} from "./profile-reducer";
 
 
-export type AddPostActionType = {
-    type: "ADD-POST"
-    newPostText: string
- }
-export type UpdateActionType = {
-    type: "UPDATE-POST"
-    newText: string
-}
-export type  UpdateNewMessageBodyType = {
-    type: "UPDATE-NEW-MESSAGE-BODY"
-    body: string
-}
-export type SendMessageType = {
-    type: "SEND-MESSAGE"
-}
-
-
-export type actionType = AddPostActionType | UpdateActionType | UpdateNewMessageBodyType | SendMessageType
-
-
-
-export const addPostActionCreator = (newPostText: string): AddPostActionType => {
-    return {
-        type: "ADD-POST",
-        newPostText: newPostText
-    }
-}
-export const changePostAC = (newText: string): UpdateActionType => {
-    return {
-        type: "UPDATE-POST",
-        newText: newText
-    }
-}
-
-export const sendMessageCreator = (): SendMessageType => {
-    return {
-        type: "SEND-MESSAGE",
-    }
-}
-export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyType => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-BODY",
-        body: body
-    };
-}
+// export type AddPostActionType = {
+//     type: "ADD-POST"
+//     newPostText: string
+//  }
+// export type UpdateActionType = {
+//     type: "UPDATE-POST"
+//     newText: string
+// }
+// export type  UpdateNewMessageBodyType = {
+//     type: "UPDATE-NEW-MESSAGE-BODY"
+//     body: string
+// }
+// export type SendMessageType = {
+//     type: "SEND-MESSAGE"
+// }
+//
+//
+// export type actionType = AddPostActionType | UpdateActionType | UpdateNewMessageBodyType | SendMessageType
+//
+//
+//
+// export const addPostActionCreator = (newPostText: string): AddPostActionType => {
+//     return {
+//         type: "ADD-POST",
+//         newPostText: newPostText
+//     }
+// }
+// export const changePostAC = (newText: string): UpdateActionType => {
+//     return {
+//         type: "UPDATE-POST",
+//         newText: newText
+//     }
+// }
+//
+// export const sendMessageCreator = (): SendMessageType => {
+//     return {
+//         type: "SEND-MESSAGE",
+//     }
+// }
+// export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyType => {
+//     return {
+//         type: "UPDATE-NEW-MESSAGE-BODY",
+//         body: body
+//     };
+// }
 
 // export let store: typeStore = {
 //     _state: {

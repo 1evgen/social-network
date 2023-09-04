@@ -1,4 +1,4 @@
-import { SendMessageType, UpdateNewMessageBodyType} from "./Store";
+import {AddMessageFormType} from "../Components/Dialogs/Dialogs";
 
 export type dialogsData = {
     id: number;
@@ -12,7 +12,6 @@ type messagesDataType = {
 export type DialogsPageType = {
     dialogsData: Array<dialogsData>
     messagesData: Array<messagesDataType>
-    newMessageBody: string
 }
 
 let initialState: DialogsPageType = {
@@ -30,34 +29,32 @@ let initialState: DialogsPageType = {
         { id: 4, message: "fine" },
         { id: 5, message: "Yo" },
     ],
-    newMessageBody: ""
+   // newMessageBody: ""
 }
-export type actionType =  UpdateNewMessageBodyType | SendMessageType
+export type DialogActionType = SendMessageType
 
-export const sendMessageCreator = (): SendMessageType => {
+export const sendMessageCreator = (values: AddMessageFormType): SendMessageType => {
     return {
         type: "SEND-MESSAGE",
+        values
     }
 }
-export const updateNewMessageBodyCreator = (body: string): UpdateNewMessageBodyType => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-BODY",
-        body: body
-    };
-}
 
-
-export const dialogReducer = (state = initialState, action: actionType): DialogsPageType => {
+export const dialogReducer = (state = initialState, action: DialogActionType): DialogsPageType => {
     switch (action.type){
-        case "UPDATE-NEW-MESSAGE-BODY":
-        return {...state, newMessageBody: action.body}
         case "SEND-MESSAGE" :
-            let body = state.newMessageBody
+            let body = action.values.newMessageBody
             let newMessage = {id: Date.now(), message:body}
-          return {...state, messagesData: [...state.messagesData, newMessage], newMessageBody: ''}
+          return {...state, messagesData: [...state.messagesData, newMessage]}
         default:
             return state
 
     }
 
+}
+
+
+export type SendMessageType = {
+    type: "SEND-MESSAGE"
+    values: AddMessageFormType
 }
