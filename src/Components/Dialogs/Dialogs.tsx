@@ -1,21 +1,12 @@
 import s from './Dialog.module.css'
 import {Message} from "./Message/Message";
 import {DialogsItem} from "./Dialogitem/Dialogitem";
-import React, {ChangeEvent} from "react";
+import React from "react";
 import {DialogsPageType} from "../../Redux/dialog-reducer";
-import {Redirect} from "react-router-dom";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {FormField, maxLength10} from "../Common/FormsControls/FormsControls";
+import {required} from "../utils/validators/validators";
 
-
-type dialogsTypeProps = {
-    id: number
-    name: string
-}
-
-type messageTypeProps = {
-    id: number
-    message: string
-}
 
 type typeForDialogs = {
      dialogsPage: DialogsPageType
@@ -61,7 +52,11 @@ export const addMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (
     return (
         <form onSubmit={props.handleSubmit} >
     <div>
-        <Field component='textarea' name='newMessageBody' placeholder={'Enter your message'}/>
+        <Field component={FormField}
+               name='newMessageBody'
+               placeholder={'Enter your message'}
+               validate={[required, maxLength10]}
+        />
     </div>
     <div>
         <button>Send Message</button>

@@ -12,7 +12,6 @@ type PostDataType = {
 export type PostType = {
     post: {
         postData: Array<PostDataType>
-      //  newPostText: string
     },
     profile: ProfileType
     status: string
