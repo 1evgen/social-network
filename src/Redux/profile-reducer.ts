@@ -9,11 +9,10 @@ type PostDataType = {
     likesCount: number;
 };
 
-
 export type PostType = {
     post: {
         postData: Array<PostDataType>
-        newPostText: string
+      //  newPostText: string
     },
     profile: ProfileType
     status: string
@@ -56,10 +55,6 @@ export type AddPostActionType = {
     type: "ADD-POST"
     newPostText: string
 }
-export type UpdateActionType = {
-    type: "UPDATE-POST"
-    newText: string
-}
 
 let initialState: PostType = {
     post: {
@@ -67,13 +62,11 @@ let initialState: PostType = {
             {id: 1, message: "コワブンガ", likesCount: 15},
             {id: 2, message: "cowabunga", likesCount: 5},
         ],
-        newPostText: "enter your post",
     },
     profile: null,
     status: ''
 }
 export type ProfileActionType = AddPostActionType
-    | UpdateActionType
     | setUserProfileActionType
     | SetStatusActionType
 
@@ -81,7 +74,7 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
 
     switch (action.type) {
         case "ADD-POST":
-            const newPostText = state.post.newPostText
+            const newPostText = action.newPostText
             let newPost: typeMyPostsProps = {
                 id: Date.now(),
                 message: newPostText,
@@ -89,10 +82,8 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
             }
             return {
                 ...state,
-                post: {...state.post, postData: [...state.post.postData, newPost], newPostText: ''}
+                post: {...state.post, postData: [...state.post.postData, newPost]}
             }
-        case "UPDATE-POST":
-            return {...state, post: {...state.post, newPostText: action.newText}}
         case "SET-USER-PROFILE":
             return {...state, profile: action.profile}
         case "SET-STATUS" : {
@@ -108,12 +99,6 @@ export const addPostActionCreator = (newPostText: string): AddPostActionType => 
     return {
         type: "ADD-POST",
         newPostText: newPostText
-    }
-}
-export const changePostAC = (newText: string): UpdateActionType => {
-    return {
-        type: "UPDATE-POST",
-        newText: newText
     }
 }
 
