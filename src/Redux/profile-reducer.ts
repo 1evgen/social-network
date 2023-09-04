@@ -1,6 +1,5 @@
-
 import {typeMyPostsProps} from "../App";
-import {AppDispatch, AppThunk} from "./ReduxStore";
+import {AppThunk} from "./ReduxStore";
 import {profileAPI, usersApi} from "../API/api";
 import {Dispatch} from "redux";
 
@@ -56,7 +55,7 @@ export type SetStatusActionType = {
 export type AddPostActionType = {
     type: "ADD-POST"
     newPostText: string
- }
+}
 export type UpdateActionType = {
     type: "UPDATE-POST"
     newText: string
@@ -65,8 +64,8 @@ export type UpdateActionType = {
 let initialState: PostType = {
     post: {
         postData: [
-            { id: 1, message: "コワブンガ", likesCount: 15 },
-            { id: 2, message: "cowabunga", likesCount: 5 },
+            {id: 1, message: "コワブンガ", likesCount: 15},
+            {id: 2, message: "cowabunga", likesCount: 5},
         ],
         newPostText: "enter your post",
     },
@@ -78,7 +77,7 @@ export type ProfileActionType = AddPostActionType
     | setUserProfileActionType
     | SetStatusActionType
 
-export const profileReducer = (state = initialState ,  action: ProfileActionType): PostType=> {
+export const profileReducer = (state = initialState, action: ProfileActionType): PostType => {
 
     switch (action.type) {
         case "ADD-POST":
@@ -88,14 +87,17 @@ export const profileReducer = (state = initialState ,  action: ProfileActionType
                 message: newPostText,
                 likesCount: 10,
             }
-            return {...state,
-                post: {...state.post, postData: [...state.post.postData, newPost], newPostText: ''}}
+            return {
+                ...state,
+                post: {...state.post, postData: [...state.post.postData, newPost], newPostText: ''}
+            }
         case "UPDATE-POST":
-          return {...state, post: {...state.post, newPostText: action.newText}}
+            return {...state, post: {...state.post, newPostText: action.newText}}
         case "SET-USER-PROFILE":
             return {...state, profile: action.profile}
         case "SET-STATUS" : {
-           return  {...state, status: action.status }
+            console.log(action.status)
+            return {...state, status: action.status}
         }
         default:
             return state
@@ -116,36 +118,36 @@ export const changePostAC = (newText: string): UpdateActionType => {
 }
 
 export const setStatusAC = (status: string) => {
-    return {type: "SET-STATUS", status }
+    return {type: "SET-STATUS", status}
 }
 
 
-export const setUserProfileAC = (profile: ProfileType): setUserProfileActionType=> {
+export const setUserProfileAC = (profile: ProfileType): setUserProfileActionType => {
     return {type: "SET-USER-PROFILE", profile}
 }
 
 
-export const getProfileThunkCreator = (userId: string): AppThunk => (dispatch)=> {
+export const getProfileThunkCreator = (userId: string): AppThunk => (dispatch) => {
     return usersApi.getProfile(userId)
-            .then(response => {
-                dispatch(setUserProfileAC(response.data))
-            })
+        .then(response => {
+            dispatch(setUserProfileAC(response.data))
+        })
 }
 
-export const  setStatusThunkCreator = (userId: string): AppThunk => (dispatch:Dispatch)=> {
-    return profileAPI.getStatus(userId).then((res=> {
-
-        dispatch(setStatusAC(res.data))}
-    )
-    )
+export const setStatusThunkCreator = (userId: string): AppThunk => (dispatch: Dispatch) => {
+    return profileAPI.getStatus(userId).then((res => {
+            dispatch(setStatusAC(res.data))
+        }
+    ))
 }
 
 
-export const  updateStatusThunkCreator = (status: string): AppThunk => (dispatch:Dispatch)=> {
+export const updateStatusThunkCreator = (status: string): AppThunk => (dispatch: any) => {
     return profileAPI.updateStatus(status)
-        .then(res=> {
-            if(res.data.resultCode === 0){
-                dispatch(setStatusAC(res.statusText))}
+        .then(res => {
+                if (res.data.resultCode === 0) {
+                    dispatch(setStatusThunkCreator('29311'))
+                }
             }
         )
 }

@@ -1,6 +1,6 @@
-import {typeMyPostsProps} from "../App";
-import {dialogReducer} from "./dialog-reducer";
-import {profileReducer} from "./profile-reducer";
+import {typeMyPostsProps} from "../../App";
+import {dialogReducer} from "../../Redux/dialog-reducer";
+import {profileReducer} from "../../Redux/profile-reducer";
 
 
 // export type AddPostActionType = {

@@ -12,6 +12,8 @@ export class ProfileStatus extends React.Component<PropsType>{
         editMode: false,
         status: this.props.status
     }
+
+
         activateEditMode = ()=> {
             this.setState({
                 editMode: true
@@ -23,6 +25,12 @@ export class ProfileStatus extends React.Component<PropsType>{
         })
         this.props.updateStatus(this.state.status)
     }
+    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const newStatus = e.currentTarget.value;
+        this.setState({
+            status: newStatus
+        });
+    }
 
     componentDidUpdate(prevProps: Readonly<PropsType>, prevState: Readonly<{}>, snapshot?: any) {
         if(prevProps.status !== this.props.status){
@@ -32,26 +40,19 @@ export class ProfileStatus extends React.Component<PropsType>{
         }
     }
 
-    onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const newStatus = e.currentTarget.value;
-        this.setState({
-            status: newStatus
-        });
-       // this.props.updateStatus(newStatus);
-
-    }
-
     render() {
 
         return (
             <div>
                 {
-                    !this.state.editMode && <span onDoubleClick={this.activateEditMode}>{this.props.status || '-----' }</span>
+                    !this.state.editMode &&
+                    <span onDoubleClick={this.activateEditMode}>{this.props.status || '-----' }</span>
                 }
                 {
                     this.state.editMode && <div>
                         <input value={this.state.status}
-                               autoFocus onBlur={this.deactivateEditMode}
+                               autoFocus
+                               onBlur={this.deactivateEditMode}
                                onChange={this.onStatusChange}
                                placeholder={"enter your status"}/>
                     </div>
