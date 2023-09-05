@@ -1,7 +1,6 @@
 import React, {ChangeEvent, ReactNode} from "react";
 import styles from './FormControls.module.css'
 import {maxLengthCreator} from "../../utils/validators/validators";
-
 type ReduxFormInput<T>  = {
     name: string
     onBlur?: (e: React.ChangeEvent<T>) => void ;
@@ -30,49 +29,51 @@ type ReduxFormMeta  = {
         warning: undefined
     }
 
-
-
 interface FormsControlsProps {
     input: ReduxFormInput<HTMLTextAreaElement | HTMLInputElement>;
     meta: ReduxFormMeta;
     placeholder?: string;
-}
-
-type FormFieldProps = FormsControlsProps & {
-    type: 'Input' | 'Textarea'
-    children?: ReactNode
+    type: string
 }
 
 export const maxLength10 = maxLengthCreator(10)
-export const FormField: React.FC<FormFieldProps> = ({input,
+export const FormField: React.FC<FormsControlsProps> = ({input,
                                                         meta,
                                                         type,
-                                                        children,
                                                         placeholder,
                                                         ...props}) =>
 {
-    const  hasError = meta.touched && meta.error && placeholder?.length
+    const  hasError = meta.touched && meta.error
     return (
         <div className={styles.formControl + ' ' + (hasError ? styles.error : '')}>
             {
-                type === 'Textarea' ? (
+                type === 'textarea' ? (
                     <div>
-                        <textarea {...input} {...props} />
+                        <textarea {...input}
+                                  placeholder={placeholder}
+                                  {...props}
+                                  {...meta}
+                        />
                     </div>
                 ): (
                     <div>
-                        <input {...input} {...props} />
+                        <input type={type}
+                               placeholder={placeholder}
+                               {...input}
+                               {...props}
+                               {...meta}
+                        />
                     </div>
                 )
             }
             {hasError && <span>{meta.error}</span>}
         </div>
-    )
-    }
+    )}
 
 
 
 
+//
 // export const TextArea: React.FC<FormsControlsProps> = ({ input, meta, ...props }) => {
 //     const  hasError = meta.touched && meta.error && props.placeholder?.length
 //     return (
