@@ -1,4 +1,5 @@
 import axios from "axios";
+import {DataAuthType} from "../Redux/auth-reducer";
 
 let instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -15,10 +16,7 @@ export const usersApi = {
         return instance.get<ResponseUsersType>(`users?page=${currentPage}&count=${pageSize}`)
             .then((response) => response.data)
     },
-    getMe: () => {
-        return instance.get<AuthResponseType>(`/auth/me`)
-            .then((response) => response.data)
-    },
+
     followUser: (userId: number) => {
         return instance.post<FollowUnFollowUserType>(`/follow/${userId}`)
     },
@@ -31,7 +29,6 @@ export const usersApi = {
     }
 }
 
-
 export const profileAPI = {
     getProfile: (userId: string) => {
         return instance.get<GetProfileResponseType>(`/profile/${userId}`)
@@ -41,6 +38,19 @@ export const profileAPI = {
     },
     updateStatus: (status: string)=> {
         return instance.put(`/profile/status`,{status: status})
+    }
+}
+
+export const authAPI = {
+    getMe: () => {
+        return instance.get<AuthResponseType<{id: number, email: string, login: string}>>(`/auth/me`)
+            .then((response) => response.data)
+    },
+    login: (dataAuth: DataAuthType)=> {
+        return instance.post<AuthResponseType<{id: number}>>(`auth/login`,dataAuth )
+    },
+    logout: ()=> {
+        return instance.delete<AuthResponseType<{}>>(`auth/login`)
     }
 }
 
@@ -64,17 +74,13 @@ type ResponseUsersType = {
     error: null | string
 }
 
-export type InfoAuthType = {
-    id: number | null,
-    email: string,
-    login: string
-}
 
 
-type AuthResponseType = {
+
+type AuthResponseType<D> = {
     resultCode: number
     messages: String[]
-    data: InfoAuthType
+    data: D
 }
 
 type FollowUnFollowUserType = {

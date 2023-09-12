@@ -1,55 +1,31 @@
-import React from "react";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {required} from "../utils/validators/validators";
-import {FormField} from "../Common/FormsControls/FormsControls";
 
+import {DataAuthType, StateType} from "../../Redux/auth-reducer";
+import {LoginReduxForm} from "./LoginForm";
+import {Redirect} from "react-router-dom";
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 }
+type LoginPropsType = {
+    loginTC: (dataAuth: DataAuthType)=> void
+    auth: StateType
+};
 
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props)=> {
+export const Login = (props: LoginPropsType)=> {
 
-    return (
-            <form onSubmit={props.handleSubmit}>
-                <div>
-                <Field validate={[required]}
-                       placeholder={'Login'}
-                       type={'input'}
-                       name={'login'}
-                       component={FormField}
-                />
-                </div>
-                <div>
-                    <Field placeholder={'Password'}
-                           type={'input'}
-                           name={'password'}
-                           component={FormField}
-                           validate={[required]}
-                    /> remember me
-                </div>
-                <div>
-                    <Field  type={'checkbox'}
-                            name={'rememberMe'}
-                            component={FormField} />
-                </div>
-                <div>
-                    <button>Login</button>
-                </div>
-            </form>
-    )
-}
-
-
-const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
-
-export const Login = ()=> {
     const onSubmit = (formData: FormDataType) => {
         console.log(formData)
+        props.loginTC(formData)
     }
+
+if(props.auth.isAuth){
+   return <Redirect to={'/profile'}/>
+}
+console.log((props.auth.isAuth))
+
     return (
         <div>
             <h1>Login</h1>
@@ -57,3 +33,4 @@ export const Login = ()=> {
         </div>
     )
 }
+

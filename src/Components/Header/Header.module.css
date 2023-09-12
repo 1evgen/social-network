@@ -23,19 +23,26 @@
     padding: 25px;
 }
 
-.loginBlock{
-    margin-left: 20px;
-}
+/*.loginBlock{*/
+/*    margin-left: 20px;*/
+/*}*/
 
 .login__img{
     max-width: 75px;
 }
-
-
 .authUser{
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+.logout{
+    position: absolute;
+    right: 120px;
+    top: 10px;
+    color: #ceb107;
+    cursor: pointer;
 }
 
 .nameLogin{

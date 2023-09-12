@@ -52,7 +52,6 @@ export const FormField: React.FC<FormsControlsProps> = ({input,
                         <textarea {...input}
                                   placeholder={placeholder}
                                   {...props}
-                                  {...meta}
                         />
                     </div>
                 ): (
@@ -61,7 +60,6 @@ export const FormField: React.FC<FormsControlsProps> = ({input,
                                placeholder={placeholder}
                                {...input}
                                {...props}
-                               {...meta}
                         />
                     </div>
                 )

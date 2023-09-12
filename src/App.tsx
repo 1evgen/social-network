@@ -6,7 +6,7 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import UsersContainer from "./Components/Users/UsersContainer";
 import ProfileContainer from "./Components/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import {Login} from "./Components/Login/Login";
+import LoginContainer from "./Components/Login/LoginContainer";
 
 export type typeMyPostsProps = {
     id: number
@@ -26,7 +26,7 @@ const App: React.FC = () => {
                      <ProfileContainer />}>
                 </Route>
                 <Route path= '/users' render={()=> <UsersContainer />}></Route>
-                <Route path='/login'  render={()=> <Login />}></Route>
+                <Route path='/login'  render={()=> <LoginContainer />}></Route>
             </div>
         </div>
     )
