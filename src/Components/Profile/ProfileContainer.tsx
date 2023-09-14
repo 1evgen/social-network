@@ -16,6 +16,7 @@ export type mapStateToPropsType = {
     profile: ProfileType
     isAuth: boolean
     status: string
+    authorizedUserId: string
 }
 export type MapDispatchToPropsType = {
     setUserProfile: (profile: ProfileType) => void
@@ -37,7 +38,8 @@ export class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if(!userId) {
-            userId = "29311"
+            userId = this.props.authorizedUserId
+            // "29311"
         }
             this.props.getProfileThunkCreator(userId)
             this.props.setStatus(userId)
@@ -45,14 +47,19 @@ export class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
-        return <Profile profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />;
+        return <Profile profile={this.props.profile}
+                        status={this.props.status}
+                        updateStatus={this.props.updateStatus}
+
+        />;
     }
 }
 
 const mapStateToProps = (state: AppStateType)=> ({
         profile: state.profile.profile,
         isAuth: state.auth['isAuth'],
-        status: state.profile.status
+        status: state.profile.status,
+        authorizedUserId: state.auth['id']
 })
 
 const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchToPropsType => {

@@ -1,7 +1,8 @@
 
 import {authAPI, usersApi} from "../API/api";
 import {AppThunk} from "./ReduxStore";
-
+import {stopSubmit} from "redux-form";
+// import stopSubmit from 'redux-form'
 export type InfoAuthType = {
     id: number | null,
     email: string | null,
@@ -61,6 +62,9 @@ export const loginTC = (dataAuth: DataAuthType): AppThunk => (dispatch)=> {
         return authAPI.login(dataAuth).then(response => {
                     if(response.data.resultCode === 0){
                         dispatch(AuthThunkCreator())
+                    }else {
+                        let messageError = response.data.resultCode > 0 ? response.data.messages[0] : 'some errors'
+                       dispatch<any>(stopSubmit('login', {_error: messageError}))
                     }
         }).catch()
 }

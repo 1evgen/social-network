@@ -2,6 +2,7 @@ import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {required} from "../utils/validators/validators";
 import {FormField} from "../Common/FormsControls/FormsControls";
+import s from '../Common/FormsControls/FormControls.module.css'
 
 type FormDataType = {
     email: string
@@ -11,6 +12,7 @@ type FormDataType = {
 
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props)=> {
+    console.log(props.error)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -34,6 +36,9 @@ export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props)=> {
                         name={'rememberMe'}
                         component={FormField} />
             </div>
+            {props.error && <div className={s.formSummaryError}>
+                {props.error}
+            </div>}
             <div>
                 <button>Login</button>
             </div>
