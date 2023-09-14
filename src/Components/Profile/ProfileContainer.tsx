@@ -40,6 +40,9 @@ export class ProfileContainer extends React.Component<PropsType> {
         if(!userId) {
             userId = this.props.authorizedUserId
             // "29311"
+            if(!userId){
+                this.props.history.push("/login")
+            }
         }
             this.props.getProfileThunkCreator(userId)
             this.props.setStatus(userId)

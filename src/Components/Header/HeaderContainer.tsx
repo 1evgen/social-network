@@ -28,10 +28,6 @@ type PropsType = mapStateToPropsType & mapDispatchToPropsType
 
 export  class HeaderContainer extends React.Component<PropsType>{
 
-    componentDidMount() {
-            this.props.AuthThunkCreator()
-    }
-
     render() {
         return <Header auth={this.props.auth}
                        setAuthUserData = {this.props.setAuthUserData}

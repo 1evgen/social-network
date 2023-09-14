@@ -30,7 +30,7 @@ export const Users = (props: UsersPropsType) => {
         props.followThunkCreator(userId)
     }
 
-const  unfollowUserHandler = (userId: number)=> {
+    const unfollowUserHandler = (userId: number)=> {
         props.unfollowThunkCreator(userId)
 }
 
