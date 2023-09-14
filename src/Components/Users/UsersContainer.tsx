@@ -12,6 +12,14 @@ import {
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUserCount,
+    getUsersPage
+} from "../../Redux/users-selectors";
 
 
 export type mapStateToPropsType = {
@@ -26,7 +34,6 @@ export type mapStateToPropsType = {
 export type MapDispatchToPropsType = {
         setUsers: (user: Array<infoAboutUserType>)=> void
         setCurrentPage: (pageNumber: number) => void
-        // toggleIsFollowingProgress: (isFetching: boolean, userId: number)=> void
         getUserThunkCreator: (currentPage: number,pageSize: number)=> void
         followThunkCreator: (userId: number)=> void
         unfollowThunkCreator: (userId: number)=> void
@@ -55,7 +62,6 @@ export class UsersContainer extends React.Component<PropsType> {
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    usersPage={this.props.usersPage}
-                   // toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                    followingInProgress = {this.props.followingInProgress}
                    followThunkCreator = {this.props.followThunkCreator}
                    unfollowThunkCreator = {this.props.unfollowThunkCreator}
@@ -66,15 +72,14 @@ export class UsersContainer extends React.Component<PropsType> {
 }
 
 
-
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         return {
-                usersPage: state.usersPage,
-                pageSize: state.usersPage.pageSize,
-                totalUserCount: state.usersPage.totalUserCount,
-                currentPage: state.usersPage.currentPage,
-                isFetching: state.usersPage.isFetching,
-                followingInProgress: state.usersPage.followingInProgress
+                usersPage: getUsersPage(state),
+                pageSize: getPageSize(state),
+                totalUserCount: getTotalUserCount(state),
+                currentPage: getCurrentPage(state),
+                isFetching: getIsFetching(state),
+                followingInProgress: getFollowingInProgress(state)
         }
 }
 
