@@ -1,39 +1,25 @@
-# Привет, Самурай! 
+<br>_"React, Redux знать будешь круто"_</br>
+<br>_"it-ka, it-ka Kamasutraa"_</br>
+<br>-Димыч-</br>
 
-Друзья, для вас мы специально подготовили этот репозиторий. Здесь вы можете взять полностью подготовленный проект для "Пути самурая", где установлены ВСЕ библиотеки нужных версий.
-В процессе прохождения видео-уроков вам не нужно устанавливать пакеты. Просто провейряйте, что библиотека есть в package.json.
-В случае, если ее вы не найдете или заметите неправильную ее работу (отличную от Диминой версии), 
-просим вас написать об этом в Telegram `Валере Сафронову (@safronman)` или `Марго (@margokomilfo)`.
+<img src="dima.png" alt="Steve" width="120" height="80">
 
-Успехов и позитивного настроения, ребята!!! Летим!🚀🚀🚀
+# Project: Social Network
 
-В этом стартовом проекте установлены следующие библиотеки
+## Project Description
+A social network with features for page navigation, adding friends, leaving comments, and user authentication.
 
-- **antd** 
-- **axios** 
-- **classnames**
-- **formik**
-- **gh-pages**
-- **jest**
-- **react** and **@types/react**
-- **react-dom** and **@types/react-dom**
-- **react-redux** and **@types/react-redux**
-- **react-router-dom** and **@types/react-router-dom**
-- **react-scripts** 
-- **react-test-renderer** and **@types/react-test-renderer**
-- **redux**
-- **redux-form** and **@types/redux-form**
-- **redux-thunk**
-- **reselect**
-- **typescript** 
-- **uuid** and **@types/uuid**
+## Project Goal
+This is an educational project that demonstrates the development of a social network. It includes the creation of components using class components in React, setting up routes, creating custom state management, transitioning to React-Redux, and interacting with APIs.
 
-После git clone 'link' установите все зависимости из package.json:
-### `yarn`
+<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://redux.js.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" alt="redux" width="40" height="40"/> </a> <a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="typescript" width="40" height="40"/> </a> 
+<a href="https://storybook.js.org/" target="_blank" rel="noreferrer">  <img src= "react-router.svg" alt="router",  width="100" height="40"/> </a>
+</p>
 
-а потом запустите проект:
-### `yarn start`
-
-
-<hr>
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Stack and Tools
+- React
+- Redux
+- Reselect
+- Redux-Form
+- React Router
+- Jest
