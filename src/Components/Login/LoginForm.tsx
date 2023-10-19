@@ -12,7 +12,6 @@ type FormDataType = {
 
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props)=> {
-    console.log(props.error)
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

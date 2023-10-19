@@ -56,8 +56,6 @@ export const MapStateToProps = (state: AppStateType) => ({
     initialized: state.app.initialized
 })
 
-
-
 // export default App;
 export  default  connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>
 (MapStateToProps, {initializeAppTC})(App)

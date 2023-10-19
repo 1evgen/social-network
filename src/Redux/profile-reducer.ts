@@ -2,58 +2,7 @@ import {typeMyPostsProps} from "../App";
 import {AppThunk} from "./ReduxStore";
 import {profileAPI, usersApi} from "../API/api";
 import {Dispatch} from "redux";
-
-type PostDataType = {
-    id: number;
-    message: string;
-    likesCount: number;
-};
-
-export type PostType = {
-    post: {
-        postData: Array<PostDataType>
-    },
-    profile: ProfileType
-    status: string
-}
-
-type ContactsType = {
-    github: string
-    vk: string
-    facebook: string
-    instagram: string
-    twitter: string
-    website: string
-    youtube: string
-    mainLink: string
-}
-type PhotosProfileType = {
-    small: string | null
-    large: string | null
-
-}
-export type ProfileType = {
-    userId: number,
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: ContactsType
-    photos: PhotosProfileType
-} | null
-
-export type setUserProfileActionType = {
-    type: 'SET-USER-PROFILE',
-    profile: ProfileType
-}
-
-export type SetStatusActionType = {
-    type: "SET-STATUS"
-    status: string
-}
-export type AddPostActionType = {
-    type: "ADD-POST"
-    newPostText: string
-}
+import {errorMassage} from "../../src/Components/utils/Error";
 
 let initialState: PostType = {
     post: {
@@ -65,12 +14,8 @@ let initialState: PostType = {
     profile: null,
     status: ''
 }
-export type ProfileActionType = AddPostActionType
-    | setUserProfileActionType
-    | SetStatusActionType
 
 export const profileReducer = (state = initialState, action: ProfileActionType): PostType => {
-
     switch (action.type) {
         case "ADD-POST":
             const newPostText = action.newPostText
@@ -94,46 +39,71 @@ export const profileReducer = (state = initialState, action: ProfileActionType):
     }
 }
 
-export const addPostActionCreator = (newPostText: string): AddPostActionType => {
-    return {
-        type: "ADD-POST",
-        newPostText: newPostText
-    }
+export const addPostActionCreator = (newPostText: string) => ({type: "ADD-POST", newPostText: newPostText} as const)
+export const setStatusAC = (status: string) => ({type: "SET-STATUS", status} as const)
+export const setUserProfileAC = (profile: ProfileType) => ({type: "SET-USER-PROFILE", profile} as const)
+
+
+export const getProfileThunkCreator = (userId: string): AppThunk => async (dispatch) => {
+    try{
+        let response = await usersApi.getProfile(userId)
+        dispatch(setUserProfileAC(response.data))
+    } catch (error){errorMassage(error)}
 }
 
-export const setStatusAC = (status: string) => {
-    return {type: "SET-STATUS", status}
+export const setStatusThunkCreator = (userId: string): AppThunk =>  async (dispatch: Dispatch) => {
+    try{
+     let res = await profileAPI.getStatus(userId)
+        dispatch(setStatusAC(res.data))
+    }catch (error){errorMassage(error)}
+
 }
 
-
-export const setUserProfileAC = (profile: ProfileType): setUserProfileActionType => {
-    return {type: "SET-USER-PROFILE", profile}
+export const updateStatusThunkCreator = (status: string): AppThunk => async (dispatch: any) => {
+    try{
+        let res = await profileAPI.updateStatus(status)
+        if (res.data.resultCode === 0) {
+            dispatch(setStatusThunkCreator('29311'))
+        }}catch (error){errorMassage(error)}
 }
 
-
-export const getProfileThunkCreator = (userId: string): AppThunk => (dispatch) => {
-    return usersApi.getProfile(userId)
-        .then(response => {
-            dispatch(setUserProfileAC(response.data))
-        })
+/// types
+type PostDataType = {
+    id: number;
+    message: string;
+    likesCount: number;
+};
+export type PostType = {
+    post: {
+        postData: Array<PostDataType>
+    },
+    profile: ProfileType
+    status: string
 }
-
-export const setStatusThunkCreator = (userId: string): AppThunk => (dispatch: Dispatch) => {
-    return profileAPI.getStatus(userId).then((res => {
-            dispatch(setStatusAC(res.data))
-        }
-    ))
+type ContactsType = {
+    github: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
 }
+type PhotosProfileType = {
+    small: string | null
+    large: string | null
 
-
-export const updateStatusThunkCreator = (status: string): AppThunk => (dispatch: any) => {
-    return profileAPI.updateStatus(status)
-        .then(res => {
-                if (res.data.resultCode === 0) {
-                    dispatch(setStatusThunkCreator('29311'))
-                }
-            }
-        )
 }
-
-///  AppThunk<Promise<void>>
+export type ProfileType = {
+    userId: number,
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType
+    photos: PhotosProfileType
+} | null
+export type ProfileActionType = AddPostActionType | setUserProfileActionType | SetStatusActionType
+export type setUserProfileActionType = ReturnType<typeof setUserProfileAC>
+export type SetStatusActionType = ReturnType<typeof setStatusAC>
+export type AddPostActionType = ReturnType<typeof addPostActionCreator>

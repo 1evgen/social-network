@@ -48,7 +48,6 @@ export class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
         this.props.getUserThunkCreator(this.props.currentPage, this.props.pageSize);
     }
-
     onPageChanged = (pageNumber: number)=> {
         this.props.setCurrentPage(pageNumber)
         this.props.getUserThunkCreator(pageNumber, this.props.pageSize)
@@ -105,9 +104,6 @@ const mapDispatchToProps = (dispatch: AppDispatch): MapDispatchToPropsType=> {
 
 
 export type UsersPropsType = mapStateToPropsType & MapDispatchToPropsType
-//export default connect<mapStateToPropsType,MapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps
-// )(UsersContainer)
-
 export default compose<React.ComponentType>(
     connect<mapStateToPropsType,MapDispatchToPropsType,{},AppStateType>(mapStateToProps,mapDispatchToProps)
 )
